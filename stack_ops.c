@@ -52,7 +52,7 @@ void	stack_push_1_2(stack *item1, stack *item2)
 {
 	char	content1;
 
-	content1 = stack_read(item1);
+	content1 = stack_pop(item1);
 	stack_push(&item2, content1);
 }
 /* Controlar el caso de que la lista tenga un solo valor y dos.

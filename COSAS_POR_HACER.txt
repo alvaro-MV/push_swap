@@ -1,4 +1,12 @@
 -Verificar la entrada: para eso uno ha de cerciorarse de que no existen
 	numeros repetidos, que las entradas son numeros, en concreto integers.
+	Error y salto de linea. 
 
 -Gestionar el record en los algoritmos de ordenacion (bubble_sort y compa;ia).
+	Lo que se devuelve son las instrucciones seguidas de un salto de linea.
+	No hay que devolver el estado de los stacks, ni hostias. 
+
+-El checker lo que hace es ejecutar y cerciorarse de que tus instrucciones
+	son buenas. Para ello, hay que definir un algoritmo de probada eficiencia.
+	Luego ejecutas las instrucciones proporcionadas y finalmente compuebas
+	si el resultado es el mismo en para ambos pares de instrucciones.

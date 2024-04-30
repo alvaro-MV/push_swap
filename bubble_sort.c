@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:45:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/30 20:18:59 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/04/30 21:03:59 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ stack	*insertion_sort(stack *a, size_t len)
 	while (len--)
 	{
 		temp = stack_pop(&a);
-		while (b != NULL && stack_read(a) > temp)
-			stack_push(&a, stack_pop(&b));
+		while (b != NULL && stack_read(b) > temp)
+			stack_push_1_2(a, b);
+		stack_push(&a, temp);
 	}
+	while (b != NULL)
+		stack_push_1_2(b, a);
 }
