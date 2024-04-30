@@ -1,0 +1,4 @@
+-Verificar la entrada: para eso uno ha de cerciorarse de que no existen
+	numeros repetidos, que las entradas son numeros, en concreto integers.
+
+-Gestionar el record en los algoritmos de ordenacion (bubble_sort y compa;ia).

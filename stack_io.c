@@ -18,63 +18,94 @@
 	el stack a y b. Tambien se puede hacer 
  */
 
-void	read_lists_argum(char **argv, stack *a, stack *b)
+size_t	read_list_argum(char **argv, stack *a)
 {
-	stack	*filling_stack;
 	int		content;
+	size_t	n_nodes;
 
-	filling_stack = a;
 	while (*argv)
 	{
-//		if (ft_strncmp(*argv, "/", 1) == 0) // posiblidad de n = ft_strlen
-		//{
-			//n_sep++;
-			//filling_stack = b;
-		//}
 		content = (int*) malloc(sizeof(int));
 		content = ft_atoi(*argv);
-		stack_push(&filling_stack, content);
+		stack_push(&a, content);
 		argv++;
+		n_nodes++;
 	}
+	return (n_nodes);
 }
 
-/* Hay que gestionar el caso en que el b no se llene. */
-void	read_list_file(int fd, stack *a, stack *b)
-{
-	char	*next_list;
-	char	**split_list;
-	int		*content;
-	stack	*filling_stack;
+//void	read_list_file(int fd, stack *a, stack *b)
+//{
+	//char	*next_list;
+	//char	**split_list;
+	//int		*content;
+	//stack	*filling_stack;
 
-	filling_stack = a;
-	while (fd != -1)
+	//filling_stack = a;
+	//while (fd != -1)
+	//{
+		//next_list = get_next_line(fd);
+		//split_list = ft_split(next_list, ' ');
+		//free(next_list);
+		////n_sep++;
+		//while (*split_list)	
+		//{
+			//content = (int*) malloc(sizeof(int));
+			//content = ft_atoi(*split_list);
+			//stack_push(&filling_stack, content);
+			//split_list++;
+		//}
+	//}
+//}
+
+void	register_instrcutions(char *record, char *instruction)
+{
+	size_t	len_instr;
+	size_t	len_record;
+
+	len_instr = ft_strlen(instruction);
+	len_record = ft_strlen(record);
+	if (len_record == 0)
+		record = (char *) malloc(len_instr + 2);
+	else
 	{
-		next_list = get_next_line(fd);
-		split_list = ft_split(next_list, ' ');
-		free(next_list);
-		//n_sep++;
-		while (*split_list)	
+		free(record);
+		record = (char *) malloc(len_instr + len_record + 2);
+	}
+	ft_strlcat(record, instruction);
+	ft_strlcat(record, " ");
+}
+
+void	print_state(stack *a, stack *b, char *record)
+{
+	print_instructions(record);
+	while (a != NULL || b != NULL)
+	{
+		if (a != NULL)
 		{
-			content = (int*) malloc(sizeof(int));
-			content = ft_atoi(*split_list);
-			stack_push(&filling_stack, content);
-			split_list++;
+			ft_printf("%i  ", stack_read(a));
+			a = a->next;
+		}
+		if (b != NULL)
+		{
+			ft_printf("%i", stack_read(b));
+			b = b->next;
 		}
 	}
+	ft_printf("-  -");
+	ft_printf("a  b");
 }
 
 int	main(int argc, char **argv)
 {
 	stack	*a;
-	stack	*b;
 	int		fd;
 
 	a = NULL;
-	b = NULL;
 	if (argc > 1)
-		read_lists_argum(argv, a, b);
+		read_lists_argum(argv, a);
 	else if (fd != -1)
-		read_lists_file(fd, a, b);
+		read_lists_file(fd, a);
 	//controlar el caso en que a o b sigan siendo NULL.
 	return (0);
 }
