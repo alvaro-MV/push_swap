@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "stack_basic_op.h"
+#include "../libft/include/ft_printf.h"
+#include "../libft/include/_toa.h"
+#include "../libft/include/libft.h"
 
 /* 
 	La lectura de las listas de numeros se pueden hacer pasando 
@@ -25,60 +28,35 @@ size_t	read_list_argum(char **argv, stack *a)
 
 	while (*argv)
 	{
-		content = (int*) malloc(sizeof(int));
 		content = ft_atoi(*argv);
-		stack_push(&a, content);
+		stack_push(&a, &content);
 		argv++;
 		n_nodes++;
 	}
 	return (n_nodes);
 }
 
-//void	read_list_file(int fd, stack *a, stack *b)
+//void	register_instrcutions(char *record, char *instruction)
 //{
-	//char	*next_list;
-	//char	**split_list;
-	//int		*content;
-	//stack	*filling_stack;
+	//size_t	len_instr;
+	//size_t	len_record;
 
-	//filling_stack = a;
-	//while (fd != -1)
+	//len_instr = ft_strlen(instruction);
+	//len_record = ft_strlen(record);
+	//if (len_record == 0)
+		//record = (char *) malloc(len_instr + 2);
+	//else
 	//{
-		//next_list = get_next_line(fd);
-		//split_list = ft_split(next_list, ' ');
-		//free(next_list);
-		////n_sep++;
-		//while (*split_list)	
-		//{
-			//content = (int*) malloc(sizeof(int));
-			//content = ft_atoi(*split_list);
-			//stack_push(&filling_stack, content);
-			//split_list++;
-		//}
+		//free(record);
+		//record = (char *) malloc(len_instr + len_record + 2);
 	//}
+	//ft_strlcat(record, instruction);
+	//ft_strlcat(record, " ");
 //}
-
-void	register_instrcutions(char *record, char *instruction)
-{
-	size_t	len_instr;
-	size_t	len_record;
-
-	len_instr = ft_strlen(instruction);
-	len_record = ft_strlen(record);
-	if (len_record == 0)
-		record = (char *) malloc(len_instr + 2);
-	else
-	{
-		free(record);
-		record = (char *) malloc(len_instr + len_record + 2);
-	}
-	ft_strlcat(record, instruction);
-	ft_strlcat(record, " ");
-}
 
 void	print_state(stack *a, stack *b, char *record)
 {
-	print_instructions(record);
+	//print_instructions(record);
 	while (a != NULL || b != NULL)
 	{
 		if (a != NULL)
@@ -103,9 +81,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	if (argc > 1)
-		read_lists_argum(argv, a);
-	else if (fd != -1)
-		read_lists_file(fd, a);
+		read_list_argum(argv, a);
 	//controlar el caso en que a o b sigan siendo NULL.
 	return (0);
 }

@@ -14,6 +14,7 @@
  # define STACK_DEF_H
 
 #include <stddef.h>
+#include <stdlib.h>
 
 typedef struct stack_item
 {
