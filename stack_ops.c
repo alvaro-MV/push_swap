@@ -49,45 +49,56 @@ void	stack_swap(stack **s)
 	stack_push(s, second_item);
 }
 
-void	stack_push_1_2(stack *item1, stack *item2)
+void	stack_push_1_2(stack **item1, stack **item2)
 {
 	int	*content1;
 
-	content1 = stack_pop(&item1);
-	printf("content1: %i", *(int*) content1);
-	//stack_push(&item2, content1);
+	content1 = stack_pop(item1);
+	if (content1 == NULL)
+		return ;
+	stack_push(item2, content1);
 }
 /* Controlar el caso de que la lista tenga un solo valor y dos.
 	Especialemente para stack_rotate.
+	Quizá el motivo por el que antes no iba era porque aunque
+	sea argumento, se le dota de un nuevo espacio en el stack para
+	guardar los argumentos.
  */
 
 void	stack_rotate(stack **stack_list)
 {
 	stack	*temporal_stack;
-	void	*item;
+	stack	*holder;
+	int		*item;
 
-	temporal_stack = NULL;
 	item = stack_pop(stack_list);
-	while (stack_list != NULL)
-		stack_push(&temporal_stack, stack_pop(stack_list));
-	stack_push(stack_list, item);
+	temporal_stack = *stack_list;
 	while (temporal_stack != NULL)
-		stack_push(stack_list, stack_pop(&temporal_stack));
+	{
+		holder = temporal_stack;
+		temporal_stack = temporal_stack->next;
+	}
+	temporal_stack = (stack *) malloc(sizeof(stack));
+	temporal_stack->content = item;
+	temporal_stack->next = NULL;
+	holder->next = temporal_stack;
 }
 
 void	stack_reverse_rotate(stack **stack_list)
 {
 	stack	*temporal_stack;
-	void	*item;
+	stack	*penultimate;
+	stack	*last;
+	int		*item;
 
-	temporal_stack = NULL;
-	while (*stack_list != NULL)
-	{
-		item = stack_pop(stack_list);
-		stack_push(&temporal_stack, item);
-	}
-	stack_pop(&temporal_stack);
+	temporal_stack = *stack_list;
 	while (temporal_stack != NULL)
-		stack_push(stack_list, stack_pop(&temporal_stack));
-	stack_push(stack_list, item);
+	{
+		penultimate = last;
+		last = temporal_stack;
+		temporal_stack = temporal_stack->next;
+	}
+	stack_push(stack_list, stack_read(last));
+	free(last);
+	penultimate->next = NULL;
 }

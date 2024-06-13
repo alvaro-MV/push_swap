@@ -24,9 +24,11 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 		print_state(a, b);
-		stack_swap(&a);
+		stack_reverse_rotate(&a);
 		print_state(a, b);
-		stack_push_1_2(a, b);
+		stack_push_1_2(&a, &b);
+		print_state(a, b);
+		stack_push_1_2(&a, &b);
 		print_state(a, b);
 		stack_clean(a);
 	}

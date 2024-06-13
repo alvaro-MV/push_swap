@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/06/13 15:16:43 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/13 17:59:28 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void    *stack_pop(stack **stack_list)
 	if (s == NULL)
 		return (NULL);
 	return_content = s->content;
-	printf(" retu: %i\n", *return_content);
 	holder = s->next;
 	free(s);
 	*stack_list = holder;
