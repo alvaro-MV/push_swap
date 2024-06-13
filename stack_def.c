@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/29 20:20:03 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:16:43 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ read (lee el ultimo) --> accede al contenido.
 */
 
 #include "stack_def.h"
+#include <stdio.h>
 
 void    stack_push(stack **stack_list, void *content)
 {
@@ -28,31 +29,46 @@ void    stack_push(stack **stack_list, void *content)
 	if (new_n == NULL)
 		return ;
 	new_n->content = content;
-	if (stack_list != NULL)
+	if (*stack_list != NULL)
 	{
 		list = *stack_list;
 		new_n->next = list;
-		*stack_list = new_n;
 	}
-	else
-		stack_list = &new_n;
+	*stack_list = new_n;
 }
 
 void    *stack_pop(stack **stack_list)
 {
-	void	*return_content;
+	int		*return_content;
 	stack	*holder;
+	stack	*s;
 
-	if (*stack_list = NULL)
+	s = *stack_list;
+	if (s == NULL)
 		return (NULL);
-	return_content = (*stack_list)->content;
-	holder = (*stack_list)->next;
-	free(*stack_list);
-	stack_list = &holder;
+	return_content = s->content;
+	printf(" retu: %i\n", *return_content);
+	holder = s->next;
+	free(s);
+	*stack_list = holder;
 	return(return_content);
 }
 
 void	*stack_read(stack *item)
 {
 	return (item->content);
+}
+
+void	stack_clean(stack * s)
+{
+	stack  *holder;
+
+	while (s != NULL)
+	{
+			holder = s;
+			s = s->next;
+			free(holder->content);
+			free(holder);
+	}
+	s = NULL;	
 }

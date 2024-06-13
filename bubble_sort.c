@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_op.h"
+#include "stack_ops.h"
 
 stack	*bubble_sort(stack *a, char *record, size_t len)
 {

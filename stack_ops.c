@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_basic_op.h"
+#include "stack_ops.h"
+#include <stdio.h>
 
 /* 
 	Seria interesante definir en algun header los 
@@ -36,8 +37,8 @@ unsigned int	stack_size(stack *item)
 
 void	stack_swap(stack **s)
 {
-	stack	*first_item;
-	stack	*second_item;
+	int	*first_item;
+	int	*second_item;
 
 	first_item = stack_pop(s);
 	second_item = stack_pop(s);
@@ -50,10 +51,11 @@ void	stack_swap(stack **s)
 
 void	stack_push_1_2(stack *item1, stack *item2)
 {
-	char	content1;
+	int	*content1;
 
-	content1 = stack_pop(item1);
-	stack_push(&item2, content1);
+	content1 = stack_pop(&item1);
+	printf("content1: %i", *(int*) content1);
+	//stack_push(&item2, content1);
 }
 /* Controlar el caso de que la lista tenga un solo valor y dos.
 	Especialemente para stack_rotate.

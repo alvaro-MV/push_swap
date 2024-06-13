@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 16:07:20 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/29 16:07:21 by alvaro           ###   ########.fr       */
+/*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
+/*   Updated: 2024/06/13 13:43:17 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef STACK_DEF_H
- # define STACK_DEF_H
+#ifndef BASIC_H
+# define BASIC_H
 
-#include <stddef.h>
-#include <stdlib.h>
+# include <stddef.h>
+# include <stdlib.h>
 
 typedef struct stack_item
 {

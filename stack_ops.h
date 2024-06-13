@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_basic_op.h                                   :+:      :+:    :+:   */
+/*   stack_ops.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/29 18:43:26 by alvaro           ###   ########.fr       */
+/*   Created: 2024/04/30 18:18:59 by alvaro            #+#    #+#             */
+/*   Updated: 2024/06/13 13:43:56 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_H
-# define BASIC_H
+#ifndef STACK_OPS_H
+# define STACK_OPS_H
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "stack_def.h"
 
-typedef struct stack_item
-{
-	void				*content;
-	struct stack_item	*next;
-}						stack;
-
-void stack_push(stack **stack_list, void *content);
-void *stack_pop(stack **stack_list);
-void *stack_read(stack *item);
-void stack_rotate(stack **stack_list);
+void	stack_push(stack **stack_list, void *content);
+void	*stack_pop(stack **stack_list);
+void	*stack_read(stack *item);
+void	stack_clean(stack *s);
 
 #endif

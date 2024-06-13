@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "stack_def.h": "c"
+        "stack_def.h": "c",
+        "stack_basic_op.h": "c",
+        "sort_algorithms.h": "c",
+        "stack_ops.h": "c"
     }
 }

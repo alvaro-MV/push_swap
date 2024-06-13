@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_basic_op.h"
+#include "stack_ops.h"
 #include "../libft/include/ft_printf.h"
 #include "../libft/include/_toa.h"
 #include "../libft/include/libft.h"
@@ -21,67 +21,61 @@
 	el stack a y b. Tambien se puede hacer 
  */
 
-size_t	read_list_argum(char **argv, stack *a)
+int	is_in(int *list_numbers, int content, int len)
 {
-	int		content;
-	size_t	n_nodes;
+	int		i;
 
-	while (*argv)
+	i = 0;
+	while (i < len)
 	{
-		content = ft_atoi(*argv);
-		stack_push(&a, &content);
-		argv++;
-		n_nodes++;
+		if (list_numbers[i] == content)
+			return (1);
+		i++;
 	}
-	return (n_nodes);
+	return (0);
 }
 
-//void	register_instrcutions(char *record, char *instruction)
-//{
-	//size_t	len_instr;
-	//size_t	len_record;
-
-	//len_instr = ft_strlen(instruction);
-	//len_record = ft_strlen(record);
-	//if (len_record == 0)
-		//record = (char *) malloc(len_instr + 2);
-	//else
-	//{
-		//free(record);
-		//record = (char *) malloc(len_instr + len_record + 2);
-	//}
-	//ft_strlcat(record, instruction);
-	//ft_strlcat(record, " ");
-//}
-
-void	print_state(stack *a, stack *b, char *record)
+stack	*read_list_argum(int argc, char **argv, stack *a)
 {
-	//print_instructions(record);
+	int		*content;
+	int		list_numbers[argc];
+	int		i;
+
+	argv++;
+	i = 0;
+	while (*argv)
+	{
+		content = (int *) malloc(sizeof(int));
+		*content = ft_atoi(*argv);
+		if (is_in(list_numbers, *content, i))
+		{
+			stack_clean(a);
+			return (NULL);
+		}
+		stack_push(&a, content);
+		list_numbers[i++] = *content;
+		argv++;
+	}
+	return (a);
+}
+
+void	print_state(stack *a, stack *b)
+{
 	while (a != NULL || b != NULL)
 	{
 		if (a != NULL)
 		{
-			ft_printf("%i  ", stack_read(a));
+			ft_printf("%i\t", * (int *) stack_read(a));
 			a = a->next;
 		}
 		if (b != NULL)
 		{
-			ft_printf("%i", stack_read(b));
+			ft_printf("%i", * (int *) stack_read(b));
 			b = b->next;
 		}
+		ft_printf("\n");
 	}
-	ft_printf("-  -");
-	ft_printf("a  b");
+	ft_printf("-\t-\n");
+	ft_printf("a\tb\n-------------------\n");
 }
 
-int	main(int argc, char **argv)
-{
-	stack	*a;
-	int		fd;
-
-	a = NULL;
-	if (argc > 1)
-		read_list_argum(argv, a);
-	//controlar el caso en que a o b sigan siendo NULL.
-	return (0);
-}
