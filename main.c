@@ -6,7 +6,6 @@
 int	is_in(int *list_numbers, int content, int len);
 stack	*read_list_argum(int argc, char **argv, stack *a);
 void	print_state(stack *a, stack *b);
-//void	*bubble_sort(stack **a, stack **b);
 stack	*insertion_sort(stack **a, stack **b);
 
 int	main(int argc, char **argv)
@@ -25,9 +24,7 @@ int	main(int argc, char **argv)
 			ft_printf("repeated integers.");
 			return (0);
 		}
-		print_state(a, b);
 		insertion_sort(&a, &b);
-		print_state(a, b);
 		stack_clean(a);
 	}
 	//controlar el caso en que a o b sigan siendo NULL.

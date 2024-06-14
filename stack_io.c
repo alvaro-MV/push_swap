@@ -65,9 +65,10 @@ void	print_state(stack *a, stack *b)
 	{
 		if (a != NULL)
 		{
-			ft_printf("%i\t", * (int *) stack_read(a));
+			ft_printf("%i", * (int *) stack_read(a));
 			a = a->next;
 		}
+		ft_printf("\t");
 		if (b != NULL)
 		{
 			ft_printf("%i", * (int *) stack_read(b));

@@ -17,37 +17,6 @@
 
 void	print_state(stack *a, stack *b);
 
-//void	*bubble_sort(stack **a, stack **b)
-//{
-	//int		swap;
-	//int		len;
-
-	//len = stack_size(*a);
-	//swap = 0;
-	//while (1)
-	//{
-		//swap = 0;
-		//while (len--)
-		//{
-			//stack_push_1_2(a, b);
-			//if (stack_read(*b) > stack_read(*a))
-			//{
-				//stack_push_1_2(b, a);
-				//printf("energumeno");
-				//stack_swap(a);
-				//swap++;
-				//stack_push_1_2(a, b);
-				//stack_push_1_2(a, b);
-				//printf("b que es: %i", *(int*)(*b)->content);
-			//}
-			//while (b != NULL)
-				//stack_push_1_2(b, a);
-		//}
-		//if (swap == 0)
-			//break ;
-	//}
-//}
-
 void	insertion_sort(stack **a, stack **b)
 {
 	int		i;
@@ -82,6 +51,8 @@ void	insertion_sort(stack **a, stack **b)
 		}
 		while(*b != 0)
 			stack_push_1_2(b, a);
+		write(1, "vaciado_b\n", 10);
+		print_state(*a, *b);
 		i++;
 	}
 }
