@@ -1,7 +1,7 @@
 #include "sort_algorithms.h"
 #include "stack_def.h"
 #include "stack_ops.h"
-#include "../libft/include/ft_printf.h"
+#include "lib/include/ft_printf.h"
 
 int	is_in(int *list_numbers, int content, int len);
 stack	*read_list_argum(int argc, char **argv, stack *a);

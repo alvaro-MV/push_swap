@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "stack_ops.h"
-#include "../libft/include/ft_printf.h"
-#include "../libft/include/_toa.h"
-#include "../libft/include/libft.h"
+#include "lib/include/ft_printf.h"
+#include "lib/include/_toa.h"
+#include "lib/include/libft.h"
 
 /* 
 	La lectura de las listas de numeros se pueden hacer pasando 

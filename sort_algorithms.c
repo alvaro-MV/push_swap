@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "sort_algorithms.h"
-#include "../libft/include/libft.h"
+#include "lib/include/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 
