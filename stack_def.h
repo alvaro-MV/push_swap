@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/06/13 13:43:17 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:47:35 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct stack_item
 {
-	void				*content;
+	int					*content;
 	struct stack_item	*next;
 }						stack;
 

@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/06/13 17:59:28 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/14 16:40:22 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    stack_push(stack **stack_list, void *content)
 	*stack_list = new_n;
 }
 
-void    *stack_pop(stack **stack_list)
+int    *stack_pop(stack **stack_list)
 {
 	int		*return_content;
 	stack	*holder;
@@ -53,7 +53,7 @@ void    *stack_pop(stack **stack_list)
 	return(return_content);
 }
 
-void	*stack_read(stack *item)
+int	*stack_read(stack *item)
 {
 	return (item->content);
 }

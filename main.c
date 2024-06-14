@@ -6,6 +6,8 @@
 int	is_in(int *list_numbers, int content, int len);
 stack	*read_list_argum(int argc, char **argv, stack *a);
 void	print_state(stack *a, stack *b);
+//void	*bubble_sort(stack **a, stack **b);
+stack	*insertion_sort(stack **a, stack **b);
 
 int	main(int argc, char **argv)
 {
@@ -24,11 +26,7 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 		print_state(a, b);
-		stack_reverse_rotate(&a);
-		print_state(a, b);
-		stack_push_1_2(&a, &b);
-		print_state(a, b);
-		stack_push_1_2(&a, &b);
+		insertion_sort(&a, &b);
 		print_state(a, b);
 		stack_clean(a);
 	}

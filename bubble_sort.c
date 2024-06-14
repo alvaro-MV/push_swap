@@ -6,57 +6,82 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:45:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/30 21:03:59 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/14 18:39:28by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_ops.h"
+#include "sort_algorithms.h"
+#include "../libft/include/libft.h"
+#include <unistd.h>
+#include <stdio.h>
 
-stack	*bubble_sort(stack *a, char *record, size_t len)
+void	print_state(stack *a, stack *b);
+
+//void	*bubble_sort(stack **a, stack **b)
+//{
+	//int		swap;
+	//int		len;
+
+	//len = stack_size(*a);
+	//swap = 0;
+	//while (1)
+	//{
+		//swap = 0;
+		//while (len--)
+		//{
+			//stack_push_1_2(a, b);
+			//if (stack_read(*b) > stack_read(*a))
+			//{
+				//stack_push_1_2(b, a);
+				//printf("energumeno");
+				//stack_swap(a);
+				//swap++;
+				//stack_push_1_2(a, b);
+				//stack_push_1_2(a, b);
+				//printf("b que es: %i", *(int*)(*b)->content);
+			//}
+			//while (b != NULL)
+				//stack_push_1_2(b, a);
+		//}
+		//if (swap == 0)
+			//break ;
+	//}
+//}
+
+void	insertion_sort(stack **a, stack **b)
 {
-	int		swap;
-	stack	*b;
+	int		i;
+	int		sort_idx;
+	size_t	len;
 
-	swap = 0;
-	b = NULL;
-	while (1)
+	len = stack_size(*a);
+	i = 1;
+	while (i < len)
 	{
-		swap = 0;
-		while (len--)
+		sort_idx = i;
+		write(1, "volcado\n", 8);
+		while (sort_idx--)
+			stack_push_1_2(a, b);
+		print_state(*a, *b);
+		sort_idx = i;
+		while (sort_idx--)
 		{
-			stack_push_1_2(a, b);
-			print_state(a, b, record);
-			if (stack_read(b) > stack_read(a))
+			if (*stack_read(*a) < *stack_read(*b))
 			{
-				stack_swap(&a);
-				swap++;
-				stack_push_1_2(a, b);
-				stack_push_1_2(a, b);
-				print_satate(a, b, record);
+				write(1, "elllo\n", 6);
+				stack_push_1_2(b, a);
+				print_state(*a, *b);
+				stack_swap(a);
 			}
-			while (b != NULL)
-				stack_push_1_2(a, b);
-			print_sate(a, b, record);
+			else
+			{
+				write(1, "rotado\n", 7);
+				stack_rotate(b);
+			}
+			print_state(*a, *b);
 		}
-		if (swap == 0)
-			break ;
+		while(*b != 0)
+			stack_push_1_2(b, a);
+		i++;
 	}
-	return (a);
-}
-
-stack	*insertion_sort(stack *a, size_t len)
-{
-	int		temp;
-	stack	*b;
-
-	b = NULL;
-	while (len--)
-	{
-		temp = stack_pop(&a);
-		while (b != NULL && stack_read(b) > temp)
-			stack_push_1_2(a, b);
-		stack_push(&a, temp);
-	}
-	while (b != NULL)
-		stack_push_1_2(b, a);
 }

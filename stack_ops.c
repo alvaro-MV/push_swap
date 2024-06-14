@@ -24,12 +24,14 @@
 
 unsigned int	stack_size(stack *item)
 {
+	stack	*temporal;
 	int		counter;
 
 	counter = 0;
-	while (item != NULL)
+	temporal = item;
+	while (temporal != NULL)
 	{
-		item = item->next;
+		temporal = temporal->next;
 		counter++;
 	}
 	return (counter);
@@ -71,17 +73,20 @@ void	stack_rotate(stack **stack_list)
 	stack	*holder;
 	int		*item;
 
-	item = stack_pop(stack_list);
-	temporal_stack = *stack_list;
-	while (temporal_stack != NULL)
+	if (stack_size(*stack_list) > 1)
 	{
-		holder = temporal_stack;
-		temporal_stack = temporal_stack->next;
+		item = stack_pop(stack_list);
+		temporal_stack = *stack_list;
+		while (temporal_stack != NULL)
+		{
+			holder = temporal_stack;
+			temporal_stack = temporal_stack->next;
+		}
+		temporal_stack = (stack *) malloc(sizeof(stack));
+		temporal_stack->content = item;
+		temporal_stack->next = NULL;
+		holder->next = temporal_stack;
 	}
-	temporal_stack = (stack *) malloc(sizeof(stack));
-	temporal_stack->content = item;
-	temporal_stack->next = NULL;
-	holder->next = temporal_stack;
 }
 
 void	stack_reverse_rotate(stack **stack_list)
