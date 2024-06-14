@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
+	ft_printf("%i\n", argc);
 	if (argc > 1)
 	{
 		a = read_list_argum(argc-1, argv, a);
@@ -24,6 +25,7 @@ int	main(int argc, char **argv)
 			ft_printf("repeated integers.");
 			return (0);
 		}
+
 		insertion_sort(&a, &b);
 		stack_clean(a);
 	}
