@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/06/14 16:40:22 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/06/14 23:35:33 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,19 @@ void	stack_clean(stack * s)
 			free(holder);
 	}
 	s = NULL;	
+}
+
+unsigned int	stack_size(stack *item)
+{
+	stack	*temporal;
+	int		counter;
+
+	counter = 0;
+	temporal = item;
+	while (temporal != NULL)
+	{
+		temporal = temporal->next;
+		counter++;
+	}
+	return (counter);
 }
