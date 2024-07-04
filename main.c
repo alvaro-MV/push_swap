@@ -14,21 +14,23 @@ int	main(int argc, char **argv)
 	stack	*b;
 	int		fd;
 
-	a = NULL;
-	b = NULL;
-	ft_printf("%i\n", argc);
-	if (argc > 1)
-	{
-		a = read_list_argum(argc-1, argv, a);
-		if (a  == NULL)
-		{
-			ft_printf("repeated integers.");
-			return (0);
-		}
+//	a = NULL;
+	//b = NULL;
+	//ft_printf("%i\n", argc);
+	//if (argc > 1)
+	//{
+		//a = read_list_argum(argc-1, argv, a);
+		//if (a  == NULL)
+		//{
+			//ft_printf("repeated integers.");
+			//return (0);
+		//}
 
-		insertion_sort(&a, &b);
-		stack_clean(a);
-	}
+		//insertion_sort(&a, &b);
+		//stack_clean(a);
+	//}
 	//controlar el caso en que a o b sigan siendo NULL.
+	fd = 9;
+	ft_printf("&fd:%d", sizeof(int));
 	return (0);
 }
