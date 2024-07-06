@@ -1,6 +1,7 @@
 #ifndef MERSENNE_TWISTER_
 # define MERSENNE_TWISTER_
 
+# define INITIAL_SEED 5489
 # define LOWER_MASK 0x7fffffff
 # define UPPER_MASK 0x80000000
 # define N 624

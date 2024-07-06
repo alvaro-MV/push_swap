@@ -1,7 +1,9 @@
 #include "mersenne_twister.h"
 #include <stdio.h>
+#include <unistd.h>
+#include "lib/include/libft.h"
 
-static MTrand  *get_rand(int seed)
+static MTrand  *get_rand_generator(int seed)
 {
     MTrand  *rand;
     int     value;
@@ -28,44 +30,66 @@ static int tempering(int y)
     return (y);
 }
 
-int MT_recursion(MTrand *rand)
+void    next_state_value(MTrand *rand, int k1, int *a, int distance)
 {
-    int         y;
-    static int  k;
-    int         k1;
-    int         rand_m;
-    int         a[2];
+    int y;
+    int rand_m;
+
+    rand->vector[k1 - 1] & UPPER_MASK;
+    y = (rand->vector[k1 - 1] & UPPER_MASK)
+        | (rand->vector[k1] & LOWER_MASK);
+    rand_m = rand->vector[(k1 - 1 + distance) % N];
+    rand->vector[k1 - 1] = rand_m ^ (y >> 1) ^ a[y & 0x1];
+}
+
+float MT_recursion(MTrand *rand)
+{
+    int y;
+    int k;
+    int k1;
+    int a[2];
 
     a[0] = 0x0;
     a[1] = A_M;
-    k1 = (k + 1) % N;
-    y = (rand->vector[k] & UPPER_MASK)
-        | (rand->vector[k1] & LOWER_MASK);
-    rand_m = rand->vector[(k + M) % N];
-    rand->vector[k] = rand_m ^ (y >> 1) ^ a[y & 0x1];
-    y = tempering(rand->vector[k]);
-    k = k1;
+    k = 0;
+    while (k < N - M)
+    {
+        k1 = (k + 1) % N;
+        next_state_value(rand, k1, a, M);
+        k = k1;
+    }
+    while (k < N - 1)
+    {
+        k1 = (k + 1) % N;
+        next_state_value(rand, k1, a, M - N);
+        k = k1;
+    }
+    y = (float) tempering(rand->vector[k]);
+    //y /= 4294967295;
+    return (y);
+}
+
+int get_random_value(void)
+{
+    static MTrand   *rand;
+    int             y;
+
+    if (rand)
+        rand = get_rand_generator(INITIAL_SEED);
+    y = MT_recursion(rand);
     return (y);
 }
 
 int main(void)
 {
-    MTrand          *rand;
     int             next_number;
 
-    rand = get_rand(547);
-    next_number = MT_recursion(rand);
+    next_number = get_random_value();
     printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
+    next_number = get_random_value();
     printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
+    next_number = get_random_value();
     printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
-    printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
-    printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
-    printf("next_number: %d\n", next_number);
-    next_number = MT_recursion(rand);
+    next_number = get_random_value();
     printf("next_number: %d\n", next_number);
 }
