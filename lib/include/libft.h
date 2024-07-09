@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:00:35 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/04/06 15:14:34 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:04:46 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <stdint.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -68,5 +70,14 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+//printf 
+int	ft_xtoa_w(unsigned int nb, char c);
+int	ft_utoa_w(unsigned int nb);
+int	ft_itoa_w(int nb);
+int	ft_ptoa_w(unsigned long long nb);
+int	ft_printf(char const *s1, ...);
+int	ft_strtoa_w(char *str);
+int	ft_chtoa_w(unsigned int c);
 
 #endif

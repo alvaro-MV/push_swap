@@ -1,5 +1,5 @@
 #include "stack_ops.h"
-#include "lib/include/ft_printf.h"
+#include "lib/include/libft.h"
 
 /* 
 	Seria interesante definir en algun header los 
@@ -68,7 +68,6 @@ void	stack_reverse_rotate_a(stack **a)
 	stack	*temporal_stack;
 	stack	*penultimate;
 	stack	*last;
-	int		*item;
 
 	temporal_stack = *a;
 	while (temporal_stack != NULL)

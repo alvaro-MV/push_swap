@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/06/14 23:35:33 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/07 21:21:27 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ read (lee el ultimo) --> accede al contenido.
 void    stack_push(stack **stack_list, void *content)
 {
 	stack  *list;
-	stack  *holder;
 	stack  *new_n;
 
 	new_n = (stack *) malloc(sizeof(stack));

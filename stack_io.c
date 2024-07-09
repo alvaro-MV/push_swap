@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_ops.h"
-#include "lib/include/ft_printf.h"
-#include "lib/include/_toa.h"
-#include "lib/include/libft.h"
+#include "io.h"
 
 /* 
 	La lectura de las listas de numeros se pueden hacer pasando 
@@ -56,6 +53,7 @@ stack	*read_list_argum(int argc, char **argv, stack *a)
 		list_numbers[i++] = *content;
 		argv++;
 	}
+	a->len = (size_t) argc;
 	return (a);
 }
 

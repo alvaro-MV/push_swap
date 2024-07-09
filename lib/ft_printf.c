@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:53:08 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/11 22:03:07 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:08:21 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "include/libft.h"
 
 static void	write_arguments(char const *s1, va_list argum, int *counter)
 {

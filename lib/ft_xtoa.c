@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_xtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 19:50:13 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/11 22:04:23 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:06:44 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/_toa.h"
+#include "include/libft.h"
 
 static unsigned int	get_len_hex(unsigned int nb)
 {

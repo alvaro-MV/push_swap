@@ -15,5 +15,8 @@ typedef struct  MTRandGen
 }       MTrand;
 
 #include <stdlib.h>
+#include "lib/include/libft.h"
+
+unsigned int get_random_value(int seed);
 
 #endif

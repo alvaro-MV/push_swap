@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chtoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:15:35 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/04/11 20:11:23 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:07:35 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/_toa.h"
+#include "include/libft.h"
 
 int	ft_chtoa_w(unsigned int c)
 {

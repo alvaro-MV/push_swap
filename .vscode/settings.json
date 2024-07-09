@@ -4,6 +4,8 @@
         "stack_basic_op.h": "c",
         "sort_algorithms.h": "c",
         "stack_ops.h": "c",
-        "mersenne_twister.h": "c"
+        "mersenne_twister.h": "c",
+        "libft.h": "c",
+        "array": "c"
     }
 }
