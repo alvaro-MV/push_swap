@@ -12,11 +12,12 @@ int	main(int argc, char **argv)
 {
 	stack	*a;
 	stack	*b;
-	int		fd;
+	int		*array;
+	int		len;
 
 	a = NULL;
 	b = NULL;
-	ft_printf("%i\n", argc);
+    len = 0;
 	if (argc > 1)
 	{
 		a = read_list_argum(argc-1, argv, a);
@@ -25,7 +26,13 @@ int	main(int argc, char **argv)
 			ft_printf("repeated integers.");
 			return (0);
 		}
-		insertion_sort(&a, &b);
+		array = get_array(a);
+        quicksort(array, 0, a->len - 1);
+        while (len < a->len)
+		{
+            ft_printf("%d\n", array[len]);
+			len++;
+		}
 		stack_clean(a);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:00:35 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/07/06 21:04:46 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/09 13:40:47 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <limits.h>
 
+// linked list structure
 typedef struct s_list
 {
 	void			*content;
@@ -79,5 +80,21 @@ int	ft_ptoa_w(unsigned long long nb);
 int	ft_printf(char const *s1, ...);
 int	ft_strtoa_w(char *str);
 int	ft_chtoa_w(unsigned int c);
+
+//RNG functions and MACROS
+
+# define INITIAL_SEED 7234
+# define LOWER_MASK 0x7fffffff
+# define UPPER_MASK 0x80000000
+# define N 624
+# define M 3
+# define A_M 0x9908b0df
+
+typedef struct  MTRandGen
+{
+    int vector[N];
+    int index;
+}       MTrand;
+unsigned int get_random_value(int seed);
 
 #endif

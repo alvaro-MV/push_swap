@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/06 23:36:33 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/09 13:32:36 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 # include <stddef.h>
 # include <stdlib.h>
 
-typedef struct stack_item
+typedef struct stack_n
 {
 	int					*content;
-	int					len;
-	int					index;
 	struct stack_item	*next;
-}						stack;
+}						stack_node;
+
+typedef struct stack_h
+{
+	int					len;
+	
+}						stack_head;
 
 #endif

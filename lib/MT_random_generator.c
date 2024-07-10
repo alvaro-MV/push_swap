@@ -1,4 +1,4 @@
-#include "mersenne_twister.h"
+#include "include/libft.h"
 
 static MTrand  *get_rand_generator(unsigned int seed)
 {
