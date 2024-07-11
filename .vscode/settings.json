@@ -6,6 +6,7 @@
         "stack_ops.h": "c",
         "mersenne_twister.h": "c",
         "libft.h": "c",
-        "array": "c"
+        "array": "c",
+        "io.h": "c"
     }
 }

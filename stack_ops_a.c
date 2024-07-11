@@ -8,7 +8,7 @@
 	main.
  */
 
-void	stack_swap_a(stack **a)
+void	stack_swap_a(stack_head *a)
 {
 	int	*first_item;
 	int	*second_item;
@@ -23,7 +23,7 @@ void	stack_swap_a(stack **a)
 	ft_printf("sa\n");
 }
 
-void	stack_push_a_b(stack **a, stack **b)
+void	stack_push_a_b(stack_head *a, stack_head *b)
 {
 	int	*content1;
 
@@ -40,41 +40,41 @@ void	stack_push_a_b(stack **a, stack **b)
 	guardar los argumentos.
  */
 
-void	stack_rotate_a(stack **a)
+void	stack_rotate_a(stack_head *a)
 {
-	stack	*temporal_stack;
-	stack	*holder;
-	int		*item;
+	stack_node	*head;
+	stack_node	*holder;
+	int			*item;
 
-	if (stack_size(*a) > 1)
+	if (stack_size(a) > 1)
 	{
 		item = stack_pop(a);
-		temporal_stack = *a;
-		while (temporal_stack != NULL)
+		head = a->head;
+		while (head != NULL)
 		{
-			holder = temporal_stack;
-			temporal_stack = temporal_stack->next;
+			holder = head;
+			head = head->next;
 		}
-		temporal_stack = (stack *) malloc(sizeof(stack));
-		temporal_stack->content = item;
-		temporal_stack->next = NULL;
-		holder->next = temporal_stack;
+		head = (stack_node *) malloc(sizeof(stack_node));
+		head->content = item;
+		head->next = NULL;
+		holder->next = head;
 	}
 	ft_printf("ra\n");
 }
 
-void	stack_reverse_rotate_a(stack **a)
+void	stack_reverse_rotate_a(stack_head *a)
 {
-	stack	*temporal_stack;
-	stack	*penultimate;
-	stack	*last;
+	stack_node	*head;
+	stack_node	*penultimate;
+	stack_node	*last;
 
-	temporal_stack = *a;
-	while (temporal_stack != NULL)
+	head = a->head;
+	while (head != NULL)
 	{
 		penultimate = last;
-		last = temporal_stack;
-		temporal_stack = temporal_stack->next;
+		last = head;
+		head = head->next;
 	}
 	stack_push(a, stack_read(last));
 	free(last);

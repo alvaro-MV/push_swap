@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/04/29 18:47:51y alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/11 17:50:31 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_in(int *list_numbers, int content, int len)
 	return (0);
 }
 
-stack	*read_list_argum(int argc, char **argv, stack *a)
+stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 {
 	int		*content;
 	int		list_numbers[argc];
@@ -47,9 +47,10 @@ stack	*read_list_argum(int argc, char **argv, stack *a)
 		if (is_in(list_numbers, *content, i))
 		{
 			stack_clean(a);
+			free(content);
 			return (NULL);
 		}
-		stack_push(&a, content);
+		stack_push(a, content);
 		list_numbers[i++] = *content;
 		argv++;
 	}
@@ -57,20 +58,25 @@ stack	*read_list_argum(int argc, char **argv, stack *a)
 	return (a);
 }
 
-void	print_state(stack *a, stack *b)
+void	print_state(stack_head *a, stack_head *b)
 {
-	while (a != NULL || b != NULL)
+	stack_node	*head_a;
+	stack_node	*head_b;
+	
+	head_a = a->head;
+	head_b = b->head;
+	while (head_a != NULL || head_b != NULL)
 	{
-		if (a != NULL)
+		if (head_a != NULL)
 		{
-			ft_printf("%i", * (int *) stack_read(a));
-			a = a->next;
+			ft_printf("%i", * (int *) stack_read(head_a));
+			head_a = head_a->next;
 		}
 		ft_printf("\t");
-		if (b != NULL)
+		if (head_b != NULL)
 		{
-			ft_printf("%i", * (int *) stack_read(b));
-			b = b->next;
+			ft_printf("%i", * (int *) stack_read(head_b));
+			head_b = head_b->next;
 		}
 		ft_printf("\n");
 	}
