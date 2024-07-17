@@ -40,6 +40,7 @@ void    dict_insert(dictionary **dic_p, dic_entry *entry)
     {
         if (!dict_expand(dic_p))
             return(dict_delete(dic));
+        dic = *dic_p;
     }
     hash_entry = dict_hash(entry->key);
     index = hash_entry % dic->capacity;
@@ -54,7 +55,7 @@ void    dict_insert(dictionary **dic_p, dic_entry *entry)
     *dic_p = dic;
 }
 
-void    map_old_values(dictionary *old_dic, dictionary *new_dic)
+static void    map_old_values(dictionary *old_dic, dictionary *new_dic)
 {
     unsigned int    i;
     unsigned int    new_index;
@@ -67,10 +68,10 @@ void    map_old_values(dictionary *old_dic, dictionary *new_dic)
         if (old_dic->entries[i] != NULL)
         {
             new_index = dict_hash(old_dic->entries[i]->key) % new_capacity;
-            while (new_dic->entries[new_index] == NULL)
+            while (new_dic->entries[new_index] != NULL)
             {
                 new_index++;
-                if (new_index == old_dic->capacity - 1)
+                if (new_index == new_dic->capacity - 1)
                     new_index = 0;
             }
             new_dic->entries[new_index] = old_dic->entries[i];
@@ -79,7 +80,7 @@ void    map_old_values(dictionary *old_dic, dictionary *new_dic)
     }
 }
 
-int dict_expand(dictionary **dic_pointer)
+static int dict_expand(dictionary **dic_pointer)
 {
     int                 new_capacity;
     dictionary          *old_dic;
