@@ -23,7 +23,7 @@ typedef struct dict
 }                   dictionary;
 
 dictionary      *dict_init(int capacity);
-void            dict_insert(dictionary *dic, dic_entry *entry);
+void            dict_insert(dictionary **dic, dic_entry *entry);
 int             dict_expand(dictionary **dic_pointer);
 void            *dict_get(dictionary *dic, char *key);
 unsigned int    dict_hash(char *key);

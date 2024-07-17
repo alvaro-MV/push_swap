@@ -22,4 +22,4 @@ args = parser.parse_args()
 
 sequence = list(range(0, args.len))
 random.shuffle(sequence)
-print(' '.join(list(map(lambda x : str(x), sequence))))
+print(', '.join(list(map(lambda x : str(x), sequence))))

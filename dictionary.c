@@ -27,20 +27,19 @@ dictionary  *dict_init(int capacity)
     return (dic);
 }
 
-void    dict_insert(dictionary *dic, dic_entry *entry)
+void    dict_insert(dictionary **dic_p, dic_entry *entry)
 {
     unsigned int    hash_entry;
     unsigned int    index;
+    dictionary      *dic;
 
     if (entry->key == NULL)
         return ;
+    dic = *dic_p;
     if (dic->n_elements > (dic->capacity / 2))
     {
-        if (!dict_expand(&dic))
-        {
-            dict_delete(dic);
-            return ;
-        }
+        if (!dict_expand(dic_p))
+            return(dict_delete(dic));
     }
     hash_entry = dict_hash(entry->key);
     index = hash_entry % dic->capacity;
@@ -52,33 +51,48 @@ void    dict_insert(dictionary *dic, dic_entry *entry)
     }
     dic->entries[index] = entry;
     dic->n_elements++;
+    *dic_p = dic;
 }
 
-int  dict_expand(dictionary **dic_pointer)
+void    map_old_values(dictionary *old_dic, dictionary *new_dic)
 {
-    int         new_capacity;
-    int         new_index;
-    int         i;
-    dictionary  *old_dic;
-    dictionary  *new_dic;
+    unsigned int    i;
+    unsigned int    new_index;
+    unsigned int    new_capacity;
+
+    i = 0;
+    new_capacity = new_dic->capacity;
+    while (i < old_dic->capacity)
+    {
+        if (old_dic->entries[i] != NULL)
+        {
+            new_index = dict_hash(old_dic->entries[i]->key) % new_capacity;
+            while (new_dic->entries[new_index] == NULL)
+            {
+                new_index++;
+                if (new_index == old_dic->capacity - 1)
+                    new_index = 0;
+            }
+            new_dic->entries[new_index] = old_dic->entries[i];
+        }
+        i++;
+    }
+}
+
+int dict_expand(dictionary **dic_pointer)
+{
+    int                 new_capacity;
+    dictionary          *old_dic;
+    dictionary          *new_dic;
 
     old_dic = *dic_pointer;
     new_capacity = old_dic->capacity * 2;
     new_dic = dict_init(new_capacity);
     if (new_dic == NULL)
-        return (-1);
-    i = 0;
-    while (old_dic->n_elements)
-    {
-        if (old_dic->entries[i] != NULL)
-        {
-            new_index = dict_hash(old_dic->entries[i]->key) % new_capacity;
-            new_dic->entries[new_index] = old_dic->entries[i];
-            new_dic->n_elements++;
-        }
-        i++;
-    }
-    dict_delete(*dic_pointer);
+        return (0);
+    map_old_values(old_dic, new_dic);
+    free(old_dic->entries);
+    free(old_dic);
     *dic_pointer = new_dic;
-    return (0);
+    return (1);
 }

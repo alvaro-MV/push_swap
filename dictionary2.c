@@ -49,6 +49,13 @@ void    dict_delete(dictionary *dic)
     while (i < dic->capacity)
     {
         if (dic->entries[i] != NULL)
+            ft_printf("%d\n", dic->entries[i]);
+        i++;
+    }
+    i = 0;
+    while (i < dic->capacity)
+    {
+        if (dic->entries[i] != NULL)
         {
             free(dic->entries[i]->key);
             free(dic->entries[i]->value);
@@ -64,19 +71,18 @@ void    dict_delete(dictionary *dic)
 
 int main(void)
 {
-    int         array[] = {12, 44, 456, 1230};
-    int         i = 0;
-    dic_entry   *entry;
-    dictionary  *dic = dict_init(15);
-    while (i < 4)
+    int             array[] = {9834, 88, 37, 86, 40, 75, 45, 7, 1096} ;
+    unsigned int    i = 0;
+    dic_entry       *entry;
+    dictionary      *dic = dict_init(15);
+    while (i < 9)
     {
         entry = (dic_entry*) malloc(sizeof(dic_entry));
         entry->key = ft_itoa(array[i]);
         entry->value = ft_itoa(i);
-        printf("key: %s,  value: %s\n", entry->key, entry->value);
-        dict_insert(dic, entry);
+        dict_insert(&dic, entry);
         i++;
     }
-    printf("value: %s", (char *) dict_get(dic, "12"));
+    printf("value: %s", (char *) dict_get(dic, "45"));
     dict_delete(dic);
 }
