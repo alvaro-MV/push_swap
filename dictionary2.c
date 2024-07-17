@@ -1,20 +1,20 @@
 #include "dictionary.h"
+#include <string.h>
 
 void    *dict_get(dictionary *dic, char *key)
 {
     unsigned int    index;
-    char            *prueba; //testeo
     unsigned int    counter;
     
     if (key == NULL)
         return (NULL);
-    index = dict_hash(key, 10) % dic->capacity;
+    index = dict_hash(key) % dic->capacity;
     counter = 0;
     while (counter < dic->capacity - 1)
     {
-        prueba = dic->entries[index].key; //testeo
-        if (dic->entries[index].key == key)
-            return (dic->entries[index].value);
+        if (dic->entries[index] 
+            && !strcmp(dic->entries[index]->key, key))
+            return (dic->entries[index]->value);
         index++;
         if (index == dic->capacity - 1)
             index = 0;
@@ -23,13 +23,15 @@ void    *dict_get(dictionary *dic, char *key)
     return (NULL);
 }
 
-unsigned int    dict_hash(char *key, int length)
+unsigned int    dict_hash(char *key)
 {
     unsigned int    hash;
     int             i;
+    int             length;
 
     hash = 2166136261u;
     i = 0;
+    length = ft_strlen(key);
     while (i < length)
     {
         hash ^= (uint8_t) key[i];
@@ -44,10 +46,14 @@ void    dict_delete(dictionary *dic)
     unsigned int    i;
 
     i = 0;
-    while (i < dic->n_elements)
+    while (i < dic->capacity)
     {
-        free(dic->entries[i].key);
-        free(dic->entries[i].value);
+        if (dic->entries[i] != NULL)
+        {
+            free(dic->entries[i]->key);
+            free(dic->entries[i]->value);
+        }
+        free(dic->entries[i]);
         i++;
     }
     free(dic->entries);
@@ -60,12 +66,14 @@ int main(void)
 {
     int         array[] = {12, 44, 456, 1230};
     int         i = 0;
-    dic_entry   entry;
+    dic_entry   *entry;
     dictionary  *dic = dict_init(15);
     while (i < 4)
     {
-        entry.key = ft_itoa(array[i]);
-        entry.value = ft_itoa(i);
+        entry = (dic_entry*) malloc(sizeof(dic_entry));
+        entry->key = ft_itoa(array[i]);
+        entry->value = ft_itoa(i);
+        printf("key: %s,  value: %s\n", entry->key, entry->value);
         dict_insert(dic, entry);
         i++;
     }

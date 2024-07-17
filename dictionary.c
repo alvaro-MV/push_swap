@@ -3,7 +3,7 @@
 dictionary  *dict_init(int capacity)
 {
     dictionary  *dic;
-    dic_entry   *entries;
+    dic_entry   **entries;
     int         dic_capacity;
 
     dic = (dictionary*) malloc(sizeof(dictionary));
@@ -15,22 +15,24 @@ dictionary  *dict_init(int capacity)
         dic_capacity = capacity;
     dic->capacity = dic_capacity;
     dic->n_elements = 0;
-    entries = (dic_entry *) ft_calloc(dic_capacity, sizeof(dic_entry));
+    entries = (dic_entry **) malloc(dic_capacity * sizeof(dic_entry*));
     if (!entries)
     {
         free(dic);
         return (NULL);
     }
     dic->entries = entries;
+    while (dic_capacity--)
+        dic->entries[dic_capacity] = NULL;
     return (dic);
 }
 
-void    dict_insert(dictionary *dic, dic_entry entry)
+void    dict_insert(dictionary *dic, dic_entry *entry)
 {
     unsigned int    hash_entry;
     unsigned int    index;
 
-    if (entry.key == NULL)
+    if (entry->key == NULL)
         return ;
     if (dic->n_elements > (dic->capacity / 2))
     {
@@ -40,9 +42,9 @@ void    dict_insert(dictionary *dic, dic_entry entry)
             return ;
         }
     }
-    hash_entry = dict_hash(entry.key, 10);
+    hash_entry = dict_hash(entry->key);
     index = hash_entry % dic->capacity;
-    while (dic->entries[index].key != NULL)
+    while (dic->entries[index] != NULL)
     {
         index++;
         if (index == dic->capacity - 1)
@@ -68,9 +70,9 @@ int  dict_expand(dictionary **dic_pointer)
     i = 0;
     while (old_dic->n_elements)
     {
-        if (old_dic->entries[i].key != NULL)
+        if (old_dic->entries[i] != NULL)
         {
-            new_index = dict_hash(old_dic->entries[i].key, 10) % new_capacity;
+            new_index = dict_hash(old_dic->entries[i]->key) % new_capacity;
             new_dic->entries[new_index] = old_dic->entries[i];
             new_dic->n_elements++;
         }
