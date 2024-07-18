@@ -1,1 +1,1 @@
-cc main.c stack_io.c stack_def.c stack_ops*.c sort_algorithms.c lib/ft_printf.c lib/ft_atoi.c lib/*toa.c lib/ft_itoa_w.c -g
+cc main.c stack_io.c stack_def.c stack_ops*.c quicksort.c sort_algorithms.c lib/libft.a -g

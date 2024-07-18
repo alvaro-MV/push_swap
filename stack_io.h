@@ -1,11 +1,12 @@
-#ifndef IO_H
-# define IO_H
+#ifndef STACK_IO_H
+# define STACK_IO_H
 
 #include "stack_ops.h"
 #include "lib/include/libft.h"
 
-int         is_in(int *list_numbers, int content, int len);
 stack_head	*read_list_argum(int argc, char **argv, stack_head *a);
 void	    print_state(stack_head *a, stack_head *b);
+dictionary  *get_dict_from_stack(stack_head *a);
+void        put_indexes_stack(stack_head *a, dictionary *dic);
 
 #endif

@@ -5,14 +5,16 @@ int	*get_array(stack_head *a)
 	size_t			i;
 	int				*array;
 	unsigned int	len;
+	stack_node		*tmp;
 
 	i = 0;
 	len = stack_size(a);
 	array = (int *) malloc(sizeof(int) * a->len);
+	tmp = a->head;
 	while (i < len)
 	{
-		array[i] = *(int *) a->head->content;
-		a->head = a->head->next;
+		array[i] = tmp->content;
+		tmp = tmp->next;
 		i++;
 	}
 	return (array);
@@ -39,7 +41,7 @@ int	partitioning(int *array, int cursor_i, int cursor_d)
 	{
 		while (array[cursor_i] < pivot)
 			cursor_i++;
-		while (array[cursor_d] > pivot)
+	while (cursor_d && array[cursor_d] > pivot)
 			cursor_d--;
 		if (cursor_i >= cursor_d)
 			break ;

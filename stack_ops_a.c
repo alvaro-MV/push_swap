@@ -10,8 +10,8 @@
 
 void	stack_swap_a(stack_head *a)
 {
-	int	*first_item;
-	int	*second_item;
+	stack_node	*first_item;
+	stack_node	*second_item;
 
 	first_item = stack_pop(a);
 	second_item = stack_pop(a);
@@ -25,7 +25,7 @@ void	stack_swap_a(stack_head *a)
 
 void	stack_push_a_b(stack_head *a, stack_head *b)
 {
-	int	*content1;
+	stack_node	*content1;
 
 	content1 = stack_pop(a);
 	if (content1 == NULL)
@@ -44,7 +44,7 @@ void	stack_rotate_a(stack_head *a)
 {
 	stack_node	*head;
 	stack_node	*holder;
-	int			*item;
+	stack_node	*item;
 
 	if (stack_size(a) > 1)
 	{
@@ -55,10 +55,8 @@ void	stack_rotate_a(stack_head *a)
 			holder = head;
 			head = head->next;
 		}
-		head = (stack_node *) malloc(sizeof(stack_node));
-		head->content = item;
-		head->next = NULL;
-		holder->next = head;
+		holder->next = item;
+		item->next = head;
 	}
 	ft_printf("ra\n");
 }
@@ -76,8 +74,7 @@ void	stack_reverse_rotate_a(stack_head *a)
 		last = head;
 		head = head->next;
 	}
-	stack_push(a, stack_read(last));
-	free(last);
+	stack_push(a, last);
 	penultimate->next = NULL;
 	ft_printf("rra\n");
 }

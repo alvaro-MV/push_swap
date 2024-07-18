@@ -1,7 +1,7 @@
 #ifndef QUICKSORT_H
 # define QUICKSORT_H
 
-#include "io.h"
+#include "stack_io.h"
 #include "stack_ops.h"
 #include "lib/include/libft.h"
 

@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:18:59 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/11 17:57:04 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/18 16:50:57 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #include "stack_def.h"
 
-void			stack_push(stack_head *stack_list, void *content);
-int				*stack_pop(stack_head *stack_list);
+void            stack_push(stack_head *stack, stack_node *new_n);
+stack_node	    *stack_pop(stack_head *stack_list);
 int				*stack_read(stack_node *item);
 void			stack_clean(stack_head *s);
 unsigned int	stack_size(stack_head *stack_list);

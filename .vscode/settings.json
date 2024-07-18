@@ -8,6 +8,7 @@
         "libft.h": "c",
         "array": "c",
         "io.h": "c",
-        "dictionary.h": "c"
+        "dictionary.h": "c",
+        "quicksort.h": "c"
     }
 }
