@@ -9,6 +9,7 @@
         "array": "c",
         "io.h": "c",
         "dictionary.h": "c",
-        "quicksort.h": "c"
+        "quicksort.h": "c",
+        "random": "c"
     }
 }

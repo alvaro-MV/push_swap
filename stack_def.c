@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/18 19:55:32 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/18 22:01:27 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ read (lee el ultimo) --> accede al contenido.
 #include "lib/include/libft.h"
 #include "dictionary.h"
 #include <stdio.h>
-
-//void    stack_push(stack_head *stack_list, int *content)
-//{
-	//stack_node  *new_n;
-	//char		*item;
-
-	//new_n = (stack_node *) malloc(sizeof(stack_node));
-	//if (new_n == NULL)
-		//return ;
-	//new_n->content = content;
-	//if (stack_list != NULL)
-		//new_n->next = stack_list->head;
-	//stack_list->head = new_n;
-	//item = ft_itoa(*content);
-	//stack_list->head->index = ft_atoi(dict_get(stack_list->dic, item));
-	//free(item);
-	//stack_list->len++;
-//}
 
 void    stack_push(stack_head *stack, stack_node *new_n)
 {

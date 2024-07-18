@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		a = read_list_argum(argc-1, argv, a);
 		if (a  == NULL)
 			return (0);
-		haz_mierdas(a, b);
+		//haz_mierdas(a, b);
 		dic = get_dict_from_stack(a);
 		put_indexes_stack(a, dic);
 		b->dic = dic;

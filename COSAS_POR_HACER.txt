@@ -10,3 +10,6 @@
 	son buenas. Para ello, hay que definir un algoritmo de probada eficiencia.
 	Luego ejecutas las instrucciones proporcionadas y finalmente compuebas
 	si el resultado es el mismo en para ambos pares de instrucciones.
+
+-En el diccionario habría que gestionar el caso en el que se quiera modificar una
+	de las keys, dado que en este caso se crearía una distinta.
