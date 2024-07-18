@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/18 19:39:12 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/18 19:50:25 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 {
 	stack_node	*number;
-	int			list_numbers[argc];
+	int			list_numbers[argc]; //Invalid
 	int			i;
 
 	argv++;
@@ -45,7 +45,6 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	}
 	if (is_sorted(a))
 		return (stack_clean(a), free(number), NULL);
-
 	a->len = (size_t) argc;
 	return (a);
 }

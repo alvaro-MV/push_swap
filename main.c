@@ -22,7 +22,8 @@ int	main(int argc, char **argv)
 {
 	stack_head	*a;
 	stack_head	*b;
-	int		len;
+	dictionary	*dic;
+	int			len;
 
 	a = ft_calloc(1, sizeof(stack_head));
 	if (a == NULL)
@@ -37,6 +38,9 @@ int	main(int argc, char **argv)
 		if (a  == NULL)
 			return (0);
 		haz_mierdas(a, b);
+		dic = get_dict_from_stack(a);
+		put_indexes_stack(a, dic);
+		b->dic = dic;
 		stack_clean(a);
 		stack_clean(b);
 	}
