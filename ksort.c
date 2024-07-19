@@ -19,6 +19,23 @@ int count_r(stack_head *b, unsigned int idx)
     return (0);
 }
 
+int count_rr(stack_head *b, unsigned int idx)
+{
+    int         count;
+    stack_node  *tmp;
+
+    count = 0;
+    tmp = b->head;
+    while (tmp)
+    {
+        count++;
+        if (tmp->index == idx)
+            count = 0;
+        tmp = tmp->next;
+    }
+    return (count);
+}
+
 void    k_sort1(stack_head *a, stack_head *b)
 {
     int pivot;
