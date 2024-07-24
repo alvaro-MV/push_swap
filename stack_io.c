@@ -6,14 +6,16 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/18 19:50:25 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/24 12:06:17 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack_io.h"
 #include "stack_ops.h"
+#include "verify.h"
 #include "dictionary.h"
 #include "quicksort.h"
+
 
 /* 
 	Gestionar:
@@ -43,8 +45,8 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 		list_numbers[i++] = number->content;
 		argv++;
 	}
-	if (is_sorted(a))
-		return (stack_clean(a), free(number), NULL);
+	if (is_sorted(list_numbers, argc))
+		return (stack_clean(a), NULL);
 	a->len = (size_t) argc;
 	return (a);
 }
@@ -76,15 +78,12 @@ void	print_state(stack_head *a, stack_head *b)
 	ft_printf("a\tb\n-------------------\n");
 }
 
-dictionary    *get_dict_from_stack(stack_head *a)
+dictionary    *get_dict_from_stack(stack_head *a, int *array)
 {
     unsigned int    i = 0;
-    int             *array;
     dic_entry       *entry;
     dictionary      *dic = dict_init(2 * (a->len));
 
-    array = get_array(a);
-    quicksort(array, 0, a->len - 1);
     dic = dict_init(2 * (a->len));
     if (dic == NULL)
         return (NULL);
@@ -98,18 +97,17 @@ dictionary    *get_dict_from_stack(stack_head *a)
         dict_insert(&dic, entry);
         i++;
     }
-	free(array);
     return (dic);
 }
 
-void    put_indexes_stack(stack_head *a, dictionary *dic)
+void    ids_to_stack_from_dic(stack_head *a, dictionary *dic)
 {
     stack_node  *tmp;
 
     tmp = a->head;
     while (tmp)
     {
-        tmp->index = dict_get(dic, ft_itoa(tmp->content));
+        tmp->index = ft_atoi(dict_get(dic, ft_itoa(tmp->content)));
         tmp = tmp->next;
     }
     a->dic = dic;

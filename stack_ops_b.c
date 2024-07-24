@@ -57,12 +57,11 @@ void	stack_rotate_b(stack_head *b)
 			holder = head;
 			head = head->next;
 		}
-		head = (stack_node *) malloc(sizeof(stack_node));
-		head->content = item->content;
-		head->next = NULL;
-		holder->next = head;
+		holder->next = item;
+		item->next = head;
+		b->len++;
+		ft_printf("rb\n");
 	}
-	ft_printf("rb\n");
 }
 
 void	stack_reverse_rotate_b(stack_head *b)
@@ -79,6 +78,7 @@ void	stack_reverse_rotate_b(stack_head *b)
 		head = head->next;
 	}
 	stack_push(b, last);
+	b->len--;
 	penultimate->next = NULL;
 	ft_printf("rrb\n");
 }

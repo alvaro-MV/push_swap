@@ -1,7 +1,7 @@
 #include "dictionary.h"
 #include <string.h>
 
-void    *dict_get(dictionary *dic, char *key)
+char    *dict_get(dictionary *dic, char *key)
 {
     unsigned int    index;
     unsigned int    counter;

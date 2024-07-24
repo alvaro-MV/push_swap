@@ -80,7 +80,7 @@ static void    map_old_values(dictionary *old_dic, dictionary *new_dic)
     }
 }
 
-static int dict_expand(dictionary **dic_pointer)
+int dict_expand(dictionary **dic_pointer)
 {
     int                 new_capacity;
     dictionary          *old_dic;

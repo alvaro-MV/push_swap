@@ -57,8 +57,9 @@ void	stack_rotate_a(stack_head *a)
 		}
 		holder->next = item;
 		item->next = head;
+		a->len++;
+		ft_printf("ra\n");
 	}
-	ft_printf("ra\n");
 }
 
 void	stack_reverse_rotate_a(stack_head *a)
@@ -75,6 +76,7 @@ void	stack_reverse_rotate_a(stack_head *a)
 		head = head->next;
 	}
 	stack_push(a, last);
+	a->len--;
 	penultimate->next = NULL;
 	ft_printf("rra\n");
 }

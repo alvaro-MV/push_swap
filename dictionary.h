@@ -24,8 +24,8 @@ typedef struct dict
 
 dictionary      *dict_init(int capacity);
 void            dict_insert(dictionary **dic, dic_entry *entry);
-//int             dict_expand(dictionary **dic_pointer);
-void            *dict_get(dictionary *dic, char *key);
+int             dict_expand(dictionary **dic_pointer);
+char            *dict_get(dictionary *dic, char *key);
 unsigned int    dict_hash(char *key);
 void            dict_delete(dictionary *dic);
 

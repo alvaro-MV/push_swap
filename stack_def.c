@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/18 22:01:27 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/07/24 11:45:52 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void    stack_push(stack_head *stack, stack_node *new_n)
 		return ;
 	new_n->next = stack->head;
 	stack->head = new_n;	
+	stack->len++;
 }
 
 int	stack_read(stack_node *node)
