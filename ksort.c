@@ -27,16 +27,33 @@ int count_rr(stack_head *b, unsigned int idx)
     int         count;
     stack_node  *tmp;
 
-    count = 0;
+    count = b->len;
     tmp = b->head;
     while (tmp)
     {
-        count++;
+        count--;
         if (tmp->index == idx)
-            count = 0;
+            return (count);
         tmp = tmp->next;
     }
-    return (count);
+    return (0);
+}
+
+int	ft_sqrt(int number)
+{
+	int	i;
+
+	if (number < 4)
+		return (1);
+	i = 2;
+	while (i * i < number)
+		i++;
+	if (i * i > number)
+	{
+		if ((i * i - number) < ((i - 1) * (i - 1) + (-number)))
+			return (i);
+	}
+	return (i - 1);
 }
 
 void    k_sort_2(stack_head *a, stack_head *b)
@@ -69,29 +86,28 @@ void    k_sort1(stack_head *a, stack_head *b)
 {
     int pivot;
     int i;
-    int j;
 
-    pivot = a->len/2;
+    pivot = ft_sqrt(a->len) * 14 / 10;
     i = 0;
     while (a->head != NULL)
     {
-        j = a->len;
-        while (j--)
+        if (a->head->index < i)
         {
-            if (a->head->index < i)
-            {
-                stack_push_a_b(a, b);
-                stack_rotate_b(b);
-            }
-            else if (a->head->index < i + pivot)
-                stack_push_a_b(a, b);
-            else
-                stack_rotate_a(a);
+            stack_push_a_b(a, b);
+            stack_rotate_b(b);
+            i++;
         }
-        i++;
+        else if (a->head->index < i + pivot)
+        {
+            stack_push_a_b(a, b);
+            i++;
+        }
+        else
+            stack_rotate_a(a);
     }
     k_sort_2(a, b);
 }
+
 
 int	main(int argc, char **argv)
 {

@@ -27,7 +27,7 @@ int	is_sorted(int *list_n, int len)
 			return (0);
 		i++;
 	}
-	ft_printf("The stack is alredy sorted.\n");
+	ft_printf("Error\n");
 	return (1);
 }
 
@@ -51,7 +51,7 @@ int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 {
 	if (!is_not_in(list_numbers, content, len))
 	{
-		ft_printf("Repeated integers.\n"); 
+		ft_printf("Error.\n"); 
 		return (1);
 	}
 	else if (!is_numeric(argv))
