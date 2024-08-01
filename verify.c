@@ -47,15 +47,12 @@ int	is_numeric(char	*next_n)
 	return (1);
 }
 
-int	is_in_range_of_int(char *argv)
+int	is_in_range_of_int(int content)
 {
-	char	*max_int;
-	char	*min_int;
-
-	max_int = "2147483647";
-	min_int = "-2147483648";
-
-	
+	if (content >= -2147483648 || content <= 2147483647)
+		return (1);
+	else
+		return (0);
 }
 
 int	not_valid_input(char *argv, int *list_numbers, int content, int len)
@@ -66,6 +63,11 @@ int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 		return (1);
 	}
 	else if (!is_numeric(argv))
+	{
+		ft_printf("Error\n");
+		return (1);
+	}
+	else if (!is_in_range_of_int(content))
 	{
 		ft_printf("Not numerical entry\n");
 		return (1);

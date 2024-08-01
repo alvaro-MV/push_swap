@@ -1,5 +1,4 @@
 #include "stack_ops.h"
-#include "lib/include/libft.h"
 
 /* 
 	Seria interesante definir en algun header los 
@@ -33,12 +32,6 @@ void	stack_push_a_b(stack_head *a, stack_head *b)
 	stack_push(b, content1);
 	ft_printf("pab\n");
 }
-/* Controlar el caso de que la lista tenga un solo valor y dos.
-	Especialemente para stack_rotate.
-	Quizá el motivo por el que antes no iba era porque aunque
-	sea argumento, se le dota de un nuevo espacio en el stack para
-	guardar los argumentos.
- */
 
 void	stack_rotate_a(stack_head *a)
 {

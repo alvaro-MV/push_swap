@@ -1,5 +1,4 @@
 #include "stack_ops.h"
-#include "lib/include/libft.h"
 
 /* 
 	Seria interesante definir en algun header los 
