@@ -50,7 +50,7 @@ int	ft_sqrt(int number)
 		i++;
 	if (i * i > number)
 	{
-		if ((i * i - number) < ((i - 1) * (i - 1) + (-number)))
+		if ((i * i - number) < ((i - 1) * (i - 1) - number))
 			return (i);
 	}
 	return (i - 1);
@@ -109,35 +109,35 @@ void    k_sort1(stack_head *a, stack_head *b)
 }
 
 
-int	main(int argc, char **argv)
-{
-	stack_head	*a;
-	stack_head	*b;
-	dictionary	*dic;
-	int			len;
-    int         *array;
+//int	main(int argc, char **argv)
+//{
+	//stack_head	*a;
+	//stack_head	*b;
+	//dictionary	*dic;
+	//int			len;
+    //int         *array;
 
-	a = ft_calloc(1, sizeof(stack_head));
-	if (a== NULL)
-		return (-1);
-	b = ft_calloc(1, sizeof(stack_head));
-	if (b == NULL)
-		return (-1);
-    len = 0;
-	if (argc > 1)
-	{
-		a = read_list_argum(argc-1, argv, a);
-		if (a  == NULL)
-			return (0);
-		array = get_array(a);
-		quicksort(array, 0, a->len - 1);
-		dic = get_dict_from_stack(a, array);
-		ids_to_stack_from_dic(a, dic);
-		b->dic = dic;
-        k_sort1(a, b);
-		free(array);
-		stack_clean(a);
-		stack_clean(b);
-	}
-	return (0);
-}
+	//a = ft_calloc(1, sizeof(stack_head));
+	//if (a== NULL)
+		//return (-1);
+	//b = ft_calloc(1, sizeof(stack_head));
+	//if (b == NULL)
+		//return (-1);
+    //len = 0;
+	//if (argc > 1)
+	//{
+		//a = read_list_argum(argc-1, argv, a);
+		//if (a  == NULL)
+			//return (0);
+		//array = get_array(a);
+		//quicksort(array, 0, a->len - 1);
+		//dic = get_dict_from_stack(a, array);
+		//ids_to_stack_from_dic(a, dic);
+		//b->dic = dic;
+        //k_sort1(a, b);
+		//free(array);
+		//stack_clean(a);
+		//stack_clean(b);
+	//}
+	//return (0);
+//}

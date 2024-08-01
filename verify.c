@@ -1,4 +1,4 @@
-#include "stack_def.h"
+#include "verify.h"
 
 int	is_not_in(int *list_numbers, int content, int len)
 {
@@ -45,6 +45,17 @@ int	is_numeric(char	*next_n)
 		i++;
 	}
 	return (1);
+}
+
+int	is_in_range_of_int(char *argv)
+{
+	char	*max_int;
+	char	*min_int;
+
+	max_int = "2147483647";
+	min_int = "-2147483648";
+
+	
 }
 
 int	not_valid_input(char *argv, int *list_numbers, int content, int len)
