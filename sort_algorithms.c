@@ -45,7 +45,44 @@ void	sort_three(stack_head *stack, char s)
         rotate_dual(stack, s);
 }
 
+/*  
+Optimizacion del algoritmo: count_r y count_rr,
+*/
 void    sort_under_7(stack_head *a, stack_head *b)
 {
-    
+    int         n_to_b;
+    int         init_len;
+    stack_node  *node;
+
+    if (a->len == 2)
+        return (sort_two(a, 'a'));
+    if (a->len == 3)
+        return (sort_three(a, 'a'));
+    n_to_b = a->len % 3;
+    node = a->head;
+    init_len = a->len;
+    while (a->len > init_len - n_to_b)
+    {
+        if (node->index <= n_to_b -1)
+            stack_push_a_b(a, b);
+        stack_rotate_a(a);
+    }
+    sort_three(a, 'a');
+    if (n_to_b == 2)
+        sort_two(b, 'b');
+    if (n_to_b == 3)
+        sort_two(b, 'b');
+    while (b->head)
+        stack_push_b_a(b, a);
+}
+
+void    __sort__(stack_head *a, stack_head *b)
+{
+    if (a->len <= 7)
+        sort_under_7(a, b);
+    else
+    {
+        k_sort_1(a, b);
+        k_sort_2(a, b);
+    }
 }

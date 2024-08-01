@@ -5,13 +5,13 @@
 #include "lib/include/libft.h"
 #include "verify.h"
 
-int count_r(stack_head *b, unsigned int idx)
+int count_r(stack_head *stack, unsigned int idx)
 {
     int         count;
     stack_node  *tmp;
 
     count = 0;
-    tmp = b->head;
+    tmp = stack->head;
     while (tmp)
     {
         count++;
@@ -22,13 +22,13 @@ int count_r(stack_head *b, unsigned int idx)
     return (0);
 }
 
-int count_rr(stack_head *b, unsigned int idx)
+int count_rr(stack_head *stack, unsigned int idx)
 {
     int         count;
     stack_node  *tmp;
 
-    count = b->len;
-    tmp = b->head;
+    count = stack->len;
+    tmp = stack->head;
     while (tmp)
     {
         count--;
@@ -56,33 +56,7 @@ int	ft_sqrt(int number)
 	return (i - 1);
 }
 
-void    k_sort_2(stack_head *a, stack_head *b)
-{
-    unsigned int    idx;
-    int             count_rot;
-    int             count_rrot;
-
-    idx = 0;
-    while (b->head != NULL)
-    {
-        count_rot = count_r(b, idx);
-        count_rrot = count_rr(b, idx);
-        if (count_rot < count_rrot)
-        {
-            while (count_rot--)
-                stack_rotate_b(b);
-        }
-        else
-        {
-            while (count_rrot--)
-                stack_reverse_rotate_b(b);
-        }
-        stack_push_b_a(b, a);
-        idx++;
-    }
-}
-
-void    k_sort1(stack_head *a, stack_head *b)
+void    k_sort_1(stack_head *a, stack_head *b)
 {
     int pivot;
     int i;
@@ -108,6 +82,31 @@ void    k_sort1(stack_head *a, stack_head *b)
     k_sort_2(a, b);
 }
 
+void    k_sort_2(stack_head *a, stack_head *b)
+{
+    unsigned int    idx;
+    int             count_rot;
+    int             count_rrot;
+
+    idx = 0;
+    while (b->head != NULL)
+    {
+        count_rot = count_r(b, idx);
+        count_rrot = count_rr(b, idx);
+        if (count_rot < count_rrot)
+        {
+            while (count_rot--)
+                stack_rotate_b(b);
+        }
+        else
+        {
+            while (count_rrot--)
+                stack_reverse_rotate_b(b);
+        }
+        stack_push_b_a(b, a);
+        idx++;
+    }
+}
 
 //int	main(int argc, char **argv)
 //{

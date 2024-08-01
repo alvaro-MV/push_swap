@@ -57,9 +57,14 @@ int	is_in_range_of_int(int content)
 
 int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 {
-	if (!is_not_in(list_numbers, content, len))
+	if (len < 2)
 	{
-		ft_printf("Error.\n"); 
+		ft_printf("Error\n"); 
+		return (1);
+	}
+	else if (!is_not_in(list_numbers, content, len))
+	{
+		ft_printf("Error\n"); 
 		return (1);
 	}
 	else if (!is_numeric(argv))
@@ -69,7 +74,7 @@ int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 	}
 	else if (!is_in_range_of_int(content))
 	{
-		ft_printf("Not numerical entry\n");
+		ft_printf("Error\n");
 		return (1);
 	}
 	else

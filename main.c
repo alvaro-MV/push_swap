@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 		dic = get_dict_from_stack(a, array);
 		ids_to_stack_from_dic(a, dic);
 		b->dic = dic;
+		__sort__(a, b);
 		free(array);
 		stack_clean(a);
 		stack_clean(b);
