@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/01 16:02:40 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/05 20:10:09 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct stack_h
 
 void            stack_push(stack_head *stack, stack_node *new_n);
 stack_node	    *stack_pop(stack_head *stack_list);
-int				*stack_read(stack_node *item);
+int				stack_read(stack_node *node);
 void			stack_clean(stack_head *s);
 unsigned int	stack_size(stack_head *stack_list);
 

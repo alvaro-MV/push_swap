@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/01 20:50:37 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/05 20:06:08 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	print_state(stack_head *a, stack_head *b)
 
 dictionary    *get_dict_from_stack(stack_head *a, int *array)
 {
-    unsigned int    i = 0;
+    int    i = 0;
     dic_entry       *entry;
     dictionary      *dic = dict_init(2 * (a->len));
 

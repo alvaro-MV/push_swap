@@ -16,9 +16,7 @@ int	is_not_in(int *list_numbers, int content, int len)
 
 int	is_sorted(int *list_n, int len)
 {
-	stack_node	*node;
 	int			i;
-	int			previous;
 	
 	i = 0;
 	while (i < len - 1)
@@ -40,7 +38,7 @@ int	is_numeric(char	*next_n)
 		return (0);
 	while (next_n[i])
 	{
-		if (next_n[i] < 48 && next_n[i] > 57)
+		if (next_n[i] < 48 || next_n[i] > 57)
 			return (0);
 		i++;
 	}

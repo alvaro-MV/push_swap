@@ -19,7 +19,7 @@ void    sort_two(stack_head *stack, char s)
         swap_dual(stack, s);
 }
 
-void	sort_three(stack_head *stack, char s)
+void	sort_three(stack_head *stack, char st)
 {
     int f;
     int s;
@@ -34,15 +34,15 @@ void	sort_three(stack_head *stack, char s)
     if (f < s && s < t)
         return ;
     else if (f < s && s > t && f < t)
-        (swap_dual(stack, s), rotate_dual(stack, s));
+        (swap_dual(stack, st), rotate_dual(stack, st));
     else if (f < s && s > t && f > t)
-        reverse_rotate_dual(stack, s);
+        reverse_rotate_dual(stack, st);
     else if (f > s && s > t)
-        (rotate_dual(stack, s), rotate_dual(stack, s));
+        (rotate_dual(stack, st), rotate_dual(stack, st));
     else if (f > s && s < t && f < t)
-        swap_dual(stack, s);
+        swap_dual(stack, st);
     else if (f > s && s < t && f > t)
-        rotate_dual(stack, s);
+        rotate_dual(stack, st);
 }
 
 void    compare_and_push(stack_head *a, stack_head *b, int r_count, int rr_count)
@@ -82,10 +82,10 @@ void    push_n_to_b(stack_head *a, stack_head *b, int n_to_b, int init_len)
         {
             rr_count++;
             if (node->index >= init_len - n_to_b)
-                rr_count == 1;
+                rr_count = 1;
             node = node->next;
         }
-        compare_and_push(a, r_count, rr_count);
+        compare_and_push(a, b, r_count, rr_count);
     }
 }
 

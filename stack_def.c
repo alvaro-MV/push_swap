@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/07/24 11:45:52 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/05 20:09:46 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ read (lee el ultimo) --> accede al contenido.
 
 void    stack_push(stack_head *stack, stack_node *new_n)
 {
-	char		*item;
-	
 	if (new_n == NULL)
 		return ;
 	new_n->next = stack->head;

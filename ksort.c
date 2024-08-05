@@ -5,7 +5,7 @@
 #include "lib/include/libft.h"
 #include "verify.h"
 
-int count_r(stack_head *stack, unsigned int idx)
+int count_r(stack_head *stack, int idx)
 {
     int         count;
     stack_node  *tmp;
@@ -22,7 +22,7 @@ int count_r(stack_head *stack, unsigned int idx)
     return (0);
 }
 
-int count_rr(stack_head *stack, unsigned int idx)
+int count_rr(stack_head *stack, int idx)
 {
     int         count;
     stack_node  *tmp;
@@ -84,7 +84,7 @@ void    k_sort_1(stack_head *a, stack_head *b)
 
 void    k_sort_2(stack_head *a, stack_head *b)
 {
-    unsigned int    idx;
+    int    idx;
     int             count_rot;
     int             count_rrot;
 
