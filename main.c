@@ -4,26 +4,17 @@
 #include "quicksort.h"
 #include "stack_io.h"
 
-void	haz_mierdas(stack_head *a, stack_head *b)
+void    __sort__(stack_head *a, stack_head *b)
 {
-	print_state(a, b);
-	stack_rotate_a(a);
-	print_state(a, b);
-	stack_reverse_rotate_a(a);
-	print_state(a, b);
-	stack_push_a_b(a, b);
-	stack_push_a_b(a, b);
-	print_state(a, b);
-	stack_swap_b(b);
-	print_state(a, b);
+    if (a->len <= 7)
+        sort_under_7(a, b);
+    else
+    {
+        k_sort_1(a, b);
+        k_sort_2(a, b);
+    }
 }
-/*
-The function:
 
-1. Create two stacks a and b.
-2. Then extract an integer array from the stack and sort with quicksort.
-3. Extract a dictionary from the array and set teh indexes of the dic to the stack.
-*/
 int	main(int argc, char **argv)
 {
 	stack_head	*a;

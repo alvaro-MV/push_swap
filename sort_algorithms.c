@@ -45,9 +45,50 @@ void	sort_three(stack_head *stack, char s)
         rotate_dual(stack, s);
 }
 
-/*  
-Optimizacion del algoritmo: count_r y count_rr,
-*/
+void    compare_and_push(stack_head *a, stack_head *b, int r_count, int rr_count)
+{
+    if (r_count  < rr_count)
+    {
+        while (r_count--)
+            stack_rotate_a(a);
+    }
+    else
+    {
+        while (rr_count--)
+            stack_reverse_rotate_a(a);
+    }
+    stack_push_a_b(a, b);
+}
+
+void    push_n_to_b(stack_head *a, stack_head *b, int n_to_b, int init_len)
+{
+    int r_count;
+    int rr_count;
+    stack_node  *node;
+
+    r_count = 0;
+    rr_count = 1;
+    while (a->len > init_len - n_to_b)
+    {
+        node = a->head;
+        while (node)
+        {
+            if (node->index >= init_len - n_to_b)
+                break ;
+            r_count++;
+            node = node->next;
+        }
+        while (node)
+        {
+            rr_count++;
+            if (node->index >= init_len - n_to_b)
+                rr_count == 1;
+            node = node->next;
+        }
+        compare_and_push(a, r_count, rr_count);
+    }
+}
+
 void    sort_under_7(stack_head *a, stack_head *b)
 {
     int         n_to_b;
@@ -61,12 +102,7 @@ void    sort_under_7(stack_head *a, stack_head *b)
     n_to_b = a->len % 3;
     node = a->head;
     init_len = a->len;
-    while (a->len > init_len - n_to_b)
-    {
-        if (node->index <= n_to_b -1)
-            stack_push_a_b(a, b);
-        stack_rotate_a(a);
-    }
+    push_n_to_b(a, b, n_to_b, init_len);
     sort_three(a, 'a');
     if (n_to_b == 2)
         sort_two(b, 'b');
@@ -74,15 +110,4 @@ void    sort_under_7(stack_head *a, stack_head *b)
         sort_two(b, 'b');
     while (b->head)
         stack_push_b_a(b, a);
-}
-
-void    __sort__(stack_head *a, stack_head *b)
-{
-    if (a->len <= 7)
-        sort_under_7(a, b);
-    else
-    {
-        k_sort_1(a, b);
-        k_sort_2(a, b);
-    }
 }
