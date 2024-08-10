@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/05 20:06:08 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:15:50 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 	-Números ordenados?
 
 	-Son iguales?
+	
+	-Contar numero de argumentos.
+
+	Coger toda la lista. Ver cáracter a carácter.
  */
 
 stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
@@ -37,16 +41,19 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	i = 0;
 	while (*argv)
 	{
-		number = (stack_node *) malloc(sizeof(stack_node));
-		number->content = ft_atoi(*argv);
-		if (not_valid_input(*argv, list_numbers, number->content, i))
-			return (stack_clean(a), free(number), NULL);
-		stack_push(a, number);
-		list_numbers[i++] = number->content;
+		list_numbers[i++] = ft_atoi(*argv);
+		if (not_valid_input(*argv, list_numbers, list_numbers[i], i))
+			return (stack_clean(a), NULL);
 		argv++;
 	}
 	if (is_sorted(list_numbers, argc))
 		return (stack_clean(a), NULL);
+	while (i--)
+	{
+		number = (stack_node *) malloc(sizeof(stack_node));
+		number->content = list_numbers[i];
+		stack_push(a, number);
+	}
 	a->len = (size_t) argc;
 	return (a);
 }
@@ -55,7 +62,7 @@ void	print_state(stack_head *a, stack_head *b)
 {
 	stack_node	*head_a;
 	stack_node	*head_b;
-	
+
 	head_a = a->head;
 	head_b = b->head;
 	ft_printf("\n");
@@ -108,7 +115,7 @@ void    ids_to_stack_from_dic(stack_head *a, dictionary *dic)
     while (tmp)
     {
         tmp->index = ft_atoi(dict_get(dic, ft_itoa(tmp->content)));
-        tmp = tmp->next;
+		tmp = tmp->next;
     }
     a->dic = dic;
 }

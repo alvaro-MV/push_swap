@@ -93,14 +93,12 @@ void    sort_under_7(stack_head *a, stack_head *b)
 {
     int         n_to_b;
     int         init_len;
-    stack_node  *node;
 
     if (a->len == 2)
         return (sort_two(a, 'a'));
     if (a->len == 3)
         return (sort_three(a, 'a'));
     n_to_b = a->len % 3;
-    node = a->head;
     init_len = a->len;
     push_n_to_b(a, b, n_to_b, init_len);
     sort_three(a, 'a');

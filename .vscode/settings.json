@@ -10,6 +10,7 @@
         "io.h": "c",
         "dictionary.h": "c",
         "quicksort.h": "c",
-        "random": "c"
+        "random": "c",
+        "stdint.h": "c"
     }
 }

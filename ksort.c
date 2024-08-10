@@ -17,6 +17,7 @@ int count_r(stack_head *stack, int idx)
         count++;
         if (tmp->index == idx)
             return (count);
+		ft_printf("\ncount: %d", count);
         tmp = tmp->next;
     }
     return (0);
@@ -33,7 +34,8 @@ int count_rr(stack_head *stack, int idx)
     {
         count--;
         if (tmp->index == idx)
-            return (count);
+            return (count++);
+		//ft_printf("\ncount: %d", count);
         tmp = tmp->next;
     }
     return (0);
@@ -65,6 +67,7 @@ void    k_sort_1(stack_head *a, stack_head *b)
     i = 0;
     while (a->head != NULL)
     {
+        ft_printf("index_head: %d\n", a->head->index);
         if (a->head->index < i)
         {
             stack_push_a_b(a, b);
@@ -78,33 +81,38 @@ void    k_sort_1(stack_head *a, stack_head *b)
         }
         else
             stack_rotate_a(a);
+        ft_printf("i: %d\n", i); //testeo
+        print_state(a, b);
     }
     k_sort_2(a, b);
 }
 
-void    k_sort_2(stack_head *a, stack_head *b)
+void	k_sort_2(stack_head *a, stack_head *b)
 {
-    int    idx;
-    int             count_rot;
-    int             count_rrot;
+	int		idx;
+	int		count_rot;
+	int		count_rrot;
 
-    idx = 0;
-    while (b->head != NULL)
-    {
-        count_rot = count_r(b, idx);
-        count_rrot = count_rr(b, idx);
-        if (count_rot < count_rrot)
-        {
-            while (count_rot--)
-                stack_rotate_b(b);
-        }
-        else
-        {
-            while (count_rrot--)
-                stack_reverse_rotate_b(b);
-        }
-        stack_push_b_a(b, a);
-        idx++;
+	idx = b->len;
+	while (b->head != NULL)
+	{
+		count_rot = count_r(b, idx);
+		count_rrot = count_rr(b, idx);
+		ft_printf("count_rot :%d   ccount_rr: %d\n", count_rot, count_rrot);
+		if (count_rot <= count_rrot)
+		{
+			while (count_rot--)
+				stack_rotate_b(b);
+		}
+		else
+		{
+			while (count_rrot--)
+				stack_reverse_rotate_b(b);
+		}
+		stack_push_b_a(b, a);
+		idx--;
+		ft_printf("i: %d\n", idx); //testeo
+		print_state(a, b);
     }
 }
 

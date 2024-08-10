@@ -32,7 +32,7 @@ void	stack_push_b_a(stack_head *b, stack_head *a)
 	if (content1 == NULL)
 		return ;
 	stack_push(a, content1);
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 }
 /* Controlar el caso de que la lista tenga un solo valor y dos.
 	Especialemente para stack_rotate.

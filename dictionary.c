@@ -55,18 +55,18 @@ void    dict_insert(dictionary **dic_p, dic_entry *entry)
     *dic_p = dic;
 }
 
-static void    map_old_values(dictionary *old_dic, dictionary *new_dic)
+static void	map_old_values(dictionary *old_dic, dictionary *new_dic)
 {
-    unsigned int    i;
-    unsigned int    new_index;
-    unsigned int    new_capacity;
+	unsigned int	i;
+	unsigned int	new_index;
+	unsigned int	new_capacity;
 
-    i = 0;
-    new_capacity = new_dic->capacity;
-    while (i < old_dic->capacity)
-    {
-        if (old_dic->entries[i] != NULL)
-        {
+	i = 0;
+	new_capacity = new_dic->capacity;
+	while (i < old_dic->capacity)
+	{
+		if (old_dic->entries[i] != NULL)
+		{
             new_index = dict_hash(old_dic->entries[i]->key) % new_capacity;
             while (new_dic->entries[new_index] != NULL)
             {

@@ -30,7 +30,7 @@ void	stack_push_a_b(stack_head *a, stack_head *b)
 	if (content1 == NULL)
 		return ;
 	stack_push(b, content1);
-	ft_printf("pab\n");
+	ft_printf("pb\n");
 }
 
 void	stack_rotate_a(stack_head *a)
