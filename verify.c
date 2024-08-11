@@ -5,7 +5,7 @@ int	is_not_in(int *list_numbers, int content, int len)
 	int		i;
 
 	i = 0;
-	while (i < len)
+	while (i < len - 1)
 	{
 		if (list_numbers[i] == content)
 			return (0);
@@ -94,7 +94,10 @@ int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 		return (1);
 	}
 	else if (!is_in_range_of_int(argv))
+	{
+		ft_printf("Error\n");
 		return (1);
+	}
 	else
 		return (0);
 }

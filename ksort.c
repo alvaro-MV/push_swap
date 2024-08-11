@@ -14,10 +14,10 @@ int count_r(stack_head *stack, int idx)
     tmp = stack->head;
     while (tmp)
     {
-        count++;
         if (tmp->index == idx)
             return (count);
-		ft_printf("\ncount: %d", count);
+        count++;
+		//ft_printf("\ncount: %d", count);
         tmp = tmp->next;
     }
     return (0);
@@ -29,12 +29,14 @@ int count_rr(stack_head *stack, int idx)
     stack_node  *tmp;
 
     count = stack->len;
+	//ft_printf("count principio en count_rr: %d\n", count);
     tmp = stack->head;
+	//ft_printf("tmp->index: %d\n", tmp->index);
     while (tmp)
     {
-        count--;
         if (tmp->index == idx)
-            return (count++);
+            return (count);
+        count--;
 		//ft_printf("\ncount: %d", count);
         tmp = tmp->next;
     }
@@ -58,33 +60,32 @@ int	ft_sqrt(int number)
 	return (i - 1);
 }
 
-void    k_sort_1(stack_head *a, stack_head *b)
+void	k_sort_1(stack_head *a, stack_head *b)
 {
-    int pivot;
-    int i;
+	int	pivot;
+	int	i;
 
-    pivot = ft_sqrt(a->len) * 14 / 10;
-    i = 0;
-    while (a->head != NULL)
-    {
-        ft_printf("index_head: %d\n", a->head->index);
-        if (a->head->index < i)
-        {
-            stack_push_a_b(a, b);
-            stack_rotate_b(b);
-            i++;
-        }
-        else if (a->head->index < i + pivot)
-        {
-            stack_push_a_b(a, b);
-            i++;
-        }
-        else
-            stack_rotate_a(a);
-        ft_printf("i: %d\n", i); //testeo
-        print_state(a, b);
-    }
-    k_sort_2(a, b);
+	pivot = ft_sqrt(a->len) * 14 / 10;
+	i = 0;
+	while (a->head != NULL)
+	{
+		//ft_printf("index_head: %d\n", a->head->index);
+		if (a->head->index < i)
+		{
+			stack_push_a_b(a, b);
+			stack_rotate_b(b);
+			i++;
+		}
+		else if (a->head->index < i + pivot)
+		{
+			stack_push_a_b(a, b);
+			i++;
+		}
+		else
+			stack_rotate_a(a);
+		//ft_printf("i: %d\n", i); //testeo
+	}
+	k_sort_2(a, b);
 }
 
 void	k_sort_2(stack_head *a, stack_head *b)
@@ -93,12 +94,12 @@ void	k_sort_2(stack_head *a, stack_head *b)
 	int		count_rot;
 	int		count_rrot;
 
-	idx = b->len;
+	idx = b->len - 1;
 	while (b->head != NULL)
 	{
 		count_rot = count_r(b, idx);
 		count_rrot = count_rr(b, idx);
-		ft_printf("count_rot :%d   ccount_rr: %d\n", count_rot, count_rrot);
+		//ft_printf("count_rot :%d   ccount_rr: %d\n", count_rot, count_rrot);
 		if (count_rot <= count_rrot)
 		{
 			while (count_rot--)
@@ -111,40 +112,6 @@ void	k_sort_2(stack_head *a, stack_head *b)
 		}
 		stack_push_b_a(b, a);
 		idx--;
-		ft_printf("i: %d\n", idx); //testeo
-		print_state(a, b);
+		//ft_printf("i: %d\n", idx); //testeo
     }
 }
-
-//int	main(int argc, char **argv)
-//{
-	//stack_head	*a;
-	//stack_head	*b;
-	//dictionary	*dic;
-	//int			len;
-    //int         *array;
-
-	//a = ft_calloc(1, sizeof(stack_head));
-	//if (a== NULL)
-		//return (-1);
-	//b = ft_calloc(1, sizeof(stack_head));
-	//if (b == NULL)
-		//return (-1);
-    //len = 0;
-	//if (argc > 1)
-	//{
-		//a = read_list_argum(argc-1, argv, a);
-		//if (a  == NULL)
-			//return (0);
-		//array = get_array(a);
-		//quicksort(array, 0, a->len - 1);
-		//dic = get_dict_from_stack(a, array);
-		//ids_to_stack_from_dic(a, dic);
-		//b->dic = dic;
-        //k_sort1(a, b);
-		//free(array);
-		//stack_clean(a);
-		//stack_clean(b);
-	//}
-	//return (0);
-//}

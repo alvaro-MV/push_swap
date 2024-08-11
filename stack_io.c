@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/10 22:15:50 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/11 20:55:03 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	while (*argv)
 	{
 		list_numbers[i++] = ft_atoi(*argv);
-		if (not_valid_input(*argv, list_numbers, list_numbers[i], i))
+		if (not_valid_input(*argv, list_numbers, list_numbers[i-1], i))
 			return (stack_clean(a), NULL);
 		argv++;
 	}
