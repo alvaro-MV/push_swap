@@ -88,7 +88,7 @@ int	not_valid_input(char *argv, int *list_numbers, int content, int len)
 		ft_printf("Error\n");
 		return (1);
 	}
-	else if (!is_numeric(argv))
+	else if (!is_numeric(argv)) //Discutible
 	{
 		ft_printf("Error\n");
 		return (1);
