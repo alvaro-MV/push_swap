@@ -6,13 +6,13 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:17:44 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/11 21:49:28 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:50:22 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/include/libft.h"
 
-int	check_digit_spaces(int argc, char *argv)
+int	check_digit_spaces(int argc, char **argv)
 {
 	int	i;
 
