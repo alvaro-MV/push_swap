@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/12 20:20:49 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/12 21:01:56 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 		number->content = list_numbers[i];
 		stack_push(a, number);
 	}
-	a->len = (size_t) argc;
+	a->len = (size_t) count_numbers(argv);
 	return (a);
 }
 
@@ -116,7 +116,6 @@ void    ids_to_stack_from_dic(stack_head *a, dictionary *dic)
     while (tmp)
     {
 		content = ft_itoa(tmp->content);
-		ft_printf("content: %s, index: %s\n", content, dict_get(dic, content));
         tmp->index = ft_atoi(dict_get(dic, content));
 		free(content);
 		tmp = tmp->next;
