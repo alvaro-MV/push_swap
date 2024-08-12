@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:50:51 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/11 20:16:35 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:53:18 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	main(int argc, char **argv)
 	b = ft_calloc(1, sizeof(stack_head));
 	if (b == NULL)
 		return (-1);
-	if (argc > 1)
+	argv++;
+	if (argc > 2)
 	{
+		argv = parse_args(argc - 1, argv);
 		a = read_list_argum(argc-1, argv, a);
 		if (a  == NULL)
 			return (0);
@@ -52,8 +54,9 @@ int	main(int argc, char **argv)
 		b->dic = dic;
 		__sort__(a, b);
 		free(array);
-		stack_clean(a);
-		stack_clean(b);
+		ft_free_array(argv);
+		(stack_clean(a), stack_clean(b));
+		dict_delete(dic);
 	}
 	return (0);
 }

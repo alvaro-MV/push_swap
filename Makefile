@@ -9,6 +9,7 @@ SRCS=dictionary.c \
       stack_ops.c \
       verify.c \
       stack_def.c \
+      parse_args.c \
       main.c
 
 LIB_DIR=./lib

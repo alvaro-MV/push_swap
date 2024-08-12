@@ -15,7 +15,7 @@
 
 void    sort_two(stack_head *stack, char s)
 {
-    if (stack->head > stack->head->next)
+    if (stack->head->content > stack->head->next->content)
         swap_dual(stack, s);
 }
 
@@ -38,7 +38,7 @@ void	sort_three(stack_head *stack, char st)
     else if (f < s && s > t && f > t)
         reverse_rotate_dual(stack, st);
     else if (f > s && s > t)
-        (rotate_dual(stack, st), rotate_dual(stack, st));
+        (swap_dual(stack, st), reverse_rotate_dual(stack, st));
     else if (f > s && s < t && f < t)
         swap_dual(stack, st);
     else if (f > s && s < t && f > t)
@@ -66,10 +66,10 @@ void    push_n_to_b(stack_head *a, stack_head *b, int n_to_b, int init_len)
     int rr_count;
     stack_node  *node;
 
-    r_count = 0;
-    rr_count = 1;
     while (a->len > init_len - n_to_b)
     {
+        r_count = 0;
+        rr_count = 1;
         node = a->head;
         while (node)
         {
@@ -94,18 +94,31 @@ void    sort_under_7(stack_head *a, stack_head *b)
     int         n_to_b;
     int         init_len;
 
+    //ft_printf("\n"); //testeo
+    //print_state(a, b); //testeo
     if (a->len == 2)
         return (sort_two(a, 'a'));
     if (a->len == 3)
         return (sort_three(a, 'a'));
-    n_to_b = a->len % 3;
+    n_to_b = ((a->len / 3 - 1) * 3) + a->len % 3;
     init_len = a->len;
     push_n_to_b(a, b, n_to_b, init_len);
     sort_three(a, 'a');
+    //ft_printf("\n"); //testeo
+    //ft_printf("Despues de haber ordenado tres en a\n");
+    //print_state(a, b); //testeo
     if (n_to_b == 2)
         sort_two(b, 'b');
-    if (n_to_b == 3)
-        sort_two(b, 'b');
+    else if (n_to_b == 3)
+        sort_three(b, 'b');
+    //ft_printf("\n"); //testeo
+    //ft_printf("Despues de haber ordenado en b\n");
+    //print_state(a, b); //testeo
     while (b->head)
+    {
         stack_push_b_a(b, a);
+        stack_rotate_a(a);
+    }
+    //ft_printf("\n"); //testeo
+    print_state(a, b); //testeo
 }

@@ -13,3 +13,6 @@
 
 -En el diccionario habría que gestionar el caso en el que se quiera modificar una
 	de las keys, dado que en este caso se crearía una distinta.
+
+- Los pequeños ordenan mal, el parser da un numero diferente de movimientos si
+	es con comillas que sin ellas.

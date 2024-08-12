@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_io.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/11 20:55:03 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:20:49 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	int			list_numbers[argc]; //Invalid
 	int			i;
 
-	argv++;
 	i = 0;
-	while (*argv)
+	while (argv[i])
 	{
-		list_numbers[i++] = ft_atoi(*argv);
-		if (not_valid_input(*argv, list_numbers, list_numbers[i-1], i))
+		list_numbers[i] = ft_atoi(argv[i]);
+		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i+1))
 			return (stack_clean(a), NULL);
-		argv++;
+		i++;
 	}
 	if (is_sorted(list_numbers, argc))
 		return (stack_clean(a), NULL);
@@ -70,13 +69,13 @@ void	print_state(stack_head *a, stack_head *b)
 	{
 		if (head_a != NULL)
 		{
-			ft_printf("%i", stack_read(head_a));
+			ft_printf("%i-->%i", stack_read(head_a), head_a->index);
 			head_a = head_a->next;
 		}
 		ft_printf("\t");
 		if (head_b != NULL)
 		{
-			ft_printf("%i", stack_read(head_b));
+			ft_printf("%i-->%i", stack_read(head_b), head_b->index);
 			head_b = head_b->next;
 		}
 		ft_printf("\n");
@@ -87,10 +86,11 @@ void	print_state(stack_head *a, stack_head *b)
 
 dictionary    *get_dict_from_stack(stack_head *a, int *array)
 {
-    int    i = 0;
+    int    			i;
     dic_entry       *entry;
-    dictionary      *dic = dict_init(2 * (a->len));
+    dictionary      *dic;
 
+	i = 0;
     dic = dict_init(2 * (a->len));
     if (dic == NULL)
         return (NULL);
@@ -110,11 +110,15 @@ dictionary    *get_dict_from_stack(stack_head *a, int *array)
 void    ids_to_stack_from_dic(stack_head *a, dictionary *dic)
 {
     stack_node  *tmp;
+	char	*content;
 
     tmp = a->head;
     while (tmp)
     {
-        tmp->index = ft_atoi(dict_get(dic, ft_itoa(tmp->content)));
+		content = ft_itoa(tmp->content);
+		ft_printf("content: %s, index: %s\n", content, dict_get(dic, content));
+        tmp->index = ft_atoi(dict_get(dic, content));
+		free(content);
 		tmp = tmp->next;
     }
     a->dic = dic;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:17:44 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/11 21:50:22 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:04:19by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,25 @@
 int	check_digit_spaces(int argc, char **argv)
 {
 	int	i;
+	int	j;
+	int	not_number;
 
 	i = 0;
 	while (i < argc)
 	{
-		while (*argv[i])
+		j = 0;
+ 		while (argv[i][j] == 32)
+			j++;
+		if (argv[i][j] == 43 || argv[i][j] == 45)
+			j++;
+		if ((argv[i][j] < 48 || argv[i][j] > 57) && argv[i][j])
+			return (0);
+		while (argv[i][j])
 		{
-			if ((*argv[i] < 48 || *argv[i] > 57) && *argv[i] != 32)
+			not_number = argv[i][j] < 48 || argv[i][j] > 57;
+			if (not_number && argv[i][j] != 32)
 				return (0);
+			j++;
 		}
 		i++;
 	}
@@ -34,22 +45,47 @@ int	count_numbers(char **argv)
 	int	i;
 	int	j;
 	int	counter;
+	int	flag;
 
 	i = 0;
-	j = 0;
 	counter = 0;
 	while (argv[i])
 	{
+		j = 0;
+		flag = 1;
 		while (argv[i][j])
 		{
-			if (argv[i][j] != 32)
+			if (argv[i][j] != 32 && flag)
+			{
 				counter++;
+				flag = 0;
+			}
+			else if (argv[i][j] == 32)
+				flag = 1;
 			j++;
 		}
+		i++;
 	}
 	return (counter);
 }
 
+void	fill_args(char **arg_expansion, char **arguments, int *j)
+{
+	unsigned int	idx_arg_exp;
+
+	idx_arg_exp = 0;
+	while (arg_expansion[idx_arg_exp])
+	{
+		if (arg_expansion[idx_arg_exp][0] != ' ')
+		{
+			arguments[*j] = arg_expansion[idx_arg_exp];
+			*j = *j + 1;
+		}
+		else
+			free(arg_expansion[idx_arg_exp]);
+		idx_arg_exp++;
+	}
+}
 char	**parse_args(int argc, char **argv)
 {
 	int		i;
@@ -62,29 +98,38 @@ char	**parse_args(int argc, char **argv)
 		ft_printf("Error\n");
 		return (NULL);
 	}
-	arguments = ft_calloc(count_numbers(argv), sizeof(char *));
+	arguments = ft_calloc(count_numbers(argv) + 1, sizeof(char *));
 	if (arguments == NULL)
 		return (NULL);
-	i = 0;
-	j = 0;
+	(i = 0, j = 0);
 	while (argv[i])
 	{
 		arg_expansion = ft_split(argv[i], ' ');
 		if (arg_expansion == NULL)
-			return (free_array(arguments), NULL);
-		while (*arg_expansion)
-		{
-			if (*arg_expansion[0] != ' ')
-			{
-				arguments[j] = *arg_expansion;
-				j++;
-			}
-			else
-				free(*arg_expansion);
-			arg_expansion++;
-		}
+			return (ft_free_array(arguments), NULL);
+		fill_args(arg_expansion, arguments, &j);
+		free(arg_expansion);
 		i++;
 	}
+	arguments[j] = NULL;
 	return (arguments);
 }
-//Comprobar si hay alguna caracter que no sea digito o espacio. Expandir los argumentos en todos sus numeros. Contabilizar el número de elementos.
+
+//int	main(int argc, char **argv)
+//{
+	//char	**args_parsed;
+	//char	*freed_arg;
+
+	//argv++;
+	//args_parsed = parse_args(argc - 1, argv);
+	//if (args_parsed == NULL)
+		//return (-1);
+	//while(*args_parsed)
+	//{
+		//freed_arg = *args_parsed;
+		//ft_printf("%s\n", *args_parsed);
+		//free(freed_arg);
+		//args_parsed++;
+	//}
+	//return (0);
+//}
