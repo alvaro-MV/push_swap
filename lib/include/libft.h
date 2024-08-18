@@ -65,7 +65,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
-int		ft_strncmp(char *s1, char *s2, unsigned int n);
+int	ft_strncmp(char *s1, char *s2, unsigned int n);
+int     ft_strcmp(char *s1, char *s2);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -81,6 +82,9 @@ int	ft_ptoa_w(unsigned long long nb);
 int	ft_printf(char const *s1, ...);
 int	ft_strtoa_w(char *str);
 int	ft_chtoa_w(unsigned int c);
+
+//get_next_line
+char    *get_next_line(int fd);
 
 //RNG functions and MACROS
 

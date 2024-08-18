@@ -25,7 +25,6 @@ int	is_sorted(int *list_n, int len)
 			return (0);
 		i++;
 	}
-	ft_printf("Error\n");
 	return (1);
 }
 
