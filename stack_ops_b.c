@@ -21,7 +21,7 @@ void	stack_swap_b(stack_head *b)
 		return ;
 	stack_push(b, first_item);
 	stack_push(b, second_item);
-	ft_printf("sb");
+	ft_printf("sb\n");
 }
 
 void	stack_push_b_a(stack_head *b, stack_head *a)

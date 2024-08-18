@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/12 21:01:56 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/18 18:13:39 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,17 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	int			i;
 
 	i = 0;
+	if (argv == NULL)
+		return (stack_clean(a), NULL);
 	while (argv[i])
 	{
 		list_numbers[i] = ft_atoi(argv[i]);
 		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i+1))
-			return (stack_clean(a), NULL);
+			return (stack_clean(a), ft_free_array(argv), NULL);
 		i++;
 	}
 	if (is_sorted(list_numbers, argc))
-		return (stack_clean(a), NULL);
+		return (ft_free_array(argv), NULL);
 	while (i--)
 	{
 		number = (stack_node *) malloc(sizeof(stack_node));

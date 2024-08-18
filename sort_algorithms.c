@@ -120,5 +120,5 @@ void    sort_under_7(stack_head *a, stack_head *b)
         stack_rotate_a(a);
     }
     //ft_printf("\n"); //testeo
-    print_state(a, b); //testeo
+    //print_state(a, b); //testeo
 }

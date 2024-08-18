@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:50:51 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/12 20:53:18 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/18 18:15:03 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,25 @@ void	__sort__(stack_head *a, stack_head *b)
 	}
 }
 
+dictionary	*get_dic_idx(stack_head *a, stack_head *b)
+{
+    int			*array;
+	dictionary	*dic;
+
+	array = get_array(a);
+	quicksort(array, 0, a->len - 1);
+	dic = get_dict_from_stack(a, array);
+	ids_to_stack_from_dic(a, dic);
+	b->dic = dic;
+	free(array);
+	return (dic);
+}
+
 int	main(int argc, char **argv)
 {
 	stack_head	*a;
 	stack_head	*b;
 	dictionary	*dic;
-    int         *array;
 
 	a = ft_calloc(1, sizeof(stack_head));
 	if (a == NULL)
@@ -46,16 +59,12 @@ int	main(int argc, char **argv)
 		argv = parse_args(argc - 1, argv);
 		a = read_list_argum(argc-1, argv, a);
 		if (a  == NULL)
-			return (0);
-		array = get_array(a);
-		quicksort(array, 0, a->len - 1);
-		dic = get_dict_from_stack(a, array);
-		ids_to_stack_from_dic(a, dic);
-		b->dic = dic;
+			return (stack_clean(b), 0);
+		dic = get_dic_idx(a, b);
 		__sort__(a, b);
-		free(array);
+		stack_clean(a);
+		stack_clean(b);
 		ft_free_array(argv);
-		(stack_clean(a), stack_clean(b));
 		dict_delete(dic);
 	}
 	return (0);
