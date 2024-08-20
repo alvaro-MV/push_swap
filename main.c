@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:50:51 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/18 20:37:16 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/20 15:02:26 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	__sort__(stack_head *a, stack_head *b)
 
 dictionary	*get_dic_idx(stack_head *a, stack_head *b)
 {
-    int			*array;
+	int			*array;
 	dictionary	*dic;
 
 	array = get_array(a);
@@ -57,8 +57,8 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		argv = parse_args(argc - 1, argv);
-		a = read_list_argum(argc-1, argv, a);
-		if (a  == NULL)
+		a = read_list_argum(argc - 1, argv, a);
+		if (a == NULL)
 			return (stack_clean(b), 0);
 		dic = get_dic_idx(a, b);
 		__sort__(a, b);

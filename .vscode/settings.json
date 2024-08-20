@@ -12,6 +12,7 @@
         "quicksort.h": "c",
         "random": "c",
         "stdint.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "cctype": "c"
     }
 }

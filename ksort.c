@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ksort.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/20 15:41:01 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/08/20 16:19:45 by alvmoral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "stack_ops.h"
 #include "dictionary.h"
 #include "sort_algorithms.h"
@@ -5,42 +17,38 @@
 #include "lib/include/libft.h"
 #include "verify.h"
 
-int count_r(stack_head *stack, int idx)
+int	count_r(stack_head *stack, int idx)
 {
-    int         count;
-    stack_node  *tmp;
+	int			count;
+	stack_node	*tmp;
 
-    count = 0;
-    tmp = stack->head;
-    while (tmp)
-    {
-        if (tmp->index == idx)
-            return (count);
-        count++;
-		//ft_printf("\ncount: %d", count);
-        tmp = tmp->next;
-    }
-    return (0);
+	count = 0;
+	tmp = stack->head;
+	while (tmp)
+	{
+		if (tmp->index == idx)
+			return (count);
+		count++;
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
-int count_rr(stack_head *stack, int idx)
+int	count_rr(stack_head *stack, int idx)
 {
-    int         count;
-    stack_node  *tmp;
+	int			count;
+	stack_node	*tmp;
 
-    count = stack->len;
-	//ft_printf("count principio en count_rr: %d\n", count);
-    tmp = stack->head;
-	//ft_printf("tmp->index: %d\n", tmp->index);
-    while (tmp)
-    {
-        if (tmp->index == idx)
-            return (count);
-        count--;
-		//ft_printf("\ncount: %d", count);
-        tmp = tmp->next;
-    }
-    return (0);
+	count = stack->len;
+	tmp = stack->head;
+	while (tmp)
+	{
+		if (tmp->index == idx)
+			return (count);
+		count--;
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 int	ft_sqrt(int number)
@@ -69,7 +77,6 @@ void	k_sort_1(stack_head *a, stack_head *b)
 	i = 0;
 	while (a->head != NULL)
 	{
-		//ft_printf("index_head: %d\n", a->head->index);
 		if (a->head->index < i)
 		{
 			stack_push_a_b(a, b);
@@ -83,7 +90,6 @@ void	k_sort_1(stack_head *a, stack_head *b)
 		}
 		else
 			stack_rotate_a(a);
-		//ft_printf("i: %d\n", i); //testeo
 	}
 	k_sort_2(a, b);
 }
@@ -99,7 +105,6 @@ void	k_sort_2(stack_head *a, stack_head *b)
 	{
 		count_rot = count_r(b, idx);
 		count_rrot = count_rr(b, idx);
-		//ft_printf("count_rot :%d   ccount_rr: %d\n", count_rot, count_rrot);
 		if (count_rot <= count_rrot)
 		{
 			while (count_rot--)
@@ -112,6 +117,5 @@ void	k_sort_2(stack_head *a, stack_head *b)
 		}
 		stack_push_b_a(b, a);
 		idx--;
-		//ft_printf("i: %d\n", idx); //testeo
-    }
+	}
 }

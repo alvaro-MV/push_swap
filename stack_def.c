@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/18 18:09:08 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/08/20 16:22:38 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ read (lee el ultimo) --> accede al contenido.
 #include "dictionary.h"
 #include <stdio.h>
 
-void    stack_push(stack_head *stack, stack_node *new_n)
+void	stack_push(stack_head *stack, stack_node *new_n)
 {
 	if (new_n == NULL)
 		return ;
 	new_n->next = stack->head;
-	stack->head = new_n;	
+	stack->head = new_n;
 	stack->len++;
 }
 
@@ -48,20 +48,20 @@ stack_node	*stack_pop(stack_head *stack_list)
 	holder = head->next;
 	stack_list->head = holder;
 	stack_list->len--;
-	return(head);
+	return (head);
 }
 
-void	stack_clean(stack_head * stack_list)
+void	stack_clean(stack_head *stack_list)
 {
-	stack_node  *holder;
+	stack_node	*holder;
 	stack_node	*tmp;
 
 	tmp = stack_list->head;
 	while (tmp != NULL)
 	{
-			holder = tmp;
-			tmp = tmp->next;
-			free(holder);
+		holder = tmp;
+		tmp = tmp->next;
+		free(holder);
 	}
 	free(stack_list);
 }
@@ -80,4 +80,3 @@ unsigned int	stack_size(stack_head *stack_list)
 	}
 	return (counter);
 }
-

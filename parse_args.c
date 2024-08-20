@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 21:17:44 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/12 18:04:19by alvaro           ###   ########.fr       */
+/*   Created: 2024/08/20 16:22:59 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/08/20 16:23:00 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_digit_spaces(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
- 		while (argv[i][j] == 32)
+		while (argv[i][j] == 32)
 			j++;
 		if (argv[i][j] == 43 || argv[i][j] == 45)
 			j++;
@@ -86,6 +86,19 @@ void	fill_args(char **arg_expansion, char **arguments, int *j)
 		idx_arg_exp++;
 	}
 }
+
+char	**intialize_parse_var(int *i, int *j, char **argv)
+{
+	char	**arguments;
+
+	arguments = ft_calloc(count_numbers(argv) + 1, sizeof(char *));
+	if (arguments == NULL)
+		return (NULL);
+	*i = 0;
+	*j = 0;
+	return (arguments);
+}
+
 char	**parse_args(int argc, char **argv)
 {
 	int		i;
@@ -98,10 +111,9 @@ char	**parse_args(int argc, char **argv)
 		ft_printf("Error\n");
 		return (NULL);
 	}
-	arguments = ft_calloc(count_numbers(argv) + 1, sizeof(char *));
-	if (arguments == NULL)
+	arguments = intialize_parse_var(&i, &j, argv);
+	if (!arguments)
 		return (NULL);
-	(i = 0, j = 0);
 	while (argv[i])
 	{
 		arg_expansion = ft_split(argv[i], ' ');

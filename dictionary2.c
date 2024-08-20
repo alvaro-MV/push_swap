@@ -1,63 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dictionary2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/20 16:10:50 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/08/20 16:10:51 by alvmoral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dictionary.h"
 #include <string.h>
 
-char    *dict_get(dictionary *dic, char *key)
+char	*dict_get(dictionary *dic, char *key)
 {
-    unsigned int    index;
-    unsigned int    counter;
-    
-    if (key == NULL)
-        return (NULL);
-    index = dict_hash(key) % dic->capacity;
-    counter = 0;
-    while (counter < dic->capacity - 1)
-    {
-        if (dic->entries[index] 
-            && !strcmp(dic->entries[index]->key, key))
-            return (dic->entries[index]->value);
-        index++;
-        if (index == dic->capacity - 1)
-            index = 0;
-        counter++;
-    }
-    return (NULL);
+	unsigned int	index;
+	unsigned int	counter;
+
+	if (key == NULL)
+		return (NULL);
+	index = dict_hash(key) % dic->capacity;
+	counter = 0;
+	while (counter < dic->capacity - 1)
+	{
+		if (dic->entries[index]
+			&& !strcmp(dic->entries[index]->key, key))
+			return (dic->entries[index]->value);
+		index++;
+		if (index == dic->capacity - 1)
+			index = 0;
+		counter++;
+	}
+	return (NULL);
 }
 
-unsigned int    dict_hash(char *key)
+unsigned int	dict_hash(char *key)
 {
-    unsigned int    hash;
-    int             i;
-    int             length;
+	unsigned int	hash;
+	int				i;
+	int				length;
 
-    hash = 2166136261u;
-    i = 0;
-    length = ft_strlen(key);
-    while (i < length)
-    {
-        hash ^= (uint8_t) key[i];
-        hash *= 16777619;
-        i++;
-    }
-    return (hash);
+	hash = 2166136261u;
+	i = 0;
+	length = ft_strlen(key);
+	while (i < length)
+	{
+		hash ^= (uint8_t) key[i];
+		hash *= 16777619;
+		i++;
+	}
+	return (hash);
 }
 
-void    dict_delete(dictionary *dic)
+void	dict_delete(dictionary *dic)
 {
-    unsigned int    i;
+	unsigned int	i;
 
-    i = 0;
-    while (i < dic->capacity)
-    {
-        if (dic->entries[i] != NULL)
-        {
-            free(dic->entries[i]->key);
-            free(dic->entries[i]->value);
-        }
-        free(dic->entries[i]);
-        i++;
-    }
-    free(dic->entries);
-    free(dic);
+	i = 0;
+	while (i < dic->capacity)
+	{
+		if (dic->entries[i] != NULL)
+		{
+			free(dic->entries[i]->key);
+			free(dic->entries[i]->value);
+		}
+		free(dic->entries[i]);
+		i++;
+	}
+	free(dic->entries);
+	free(dic);
 }
 
 //#include "sort_algorithms.h"
