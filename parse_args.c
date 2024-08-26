@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:22:59 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/20 16:23:00 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:42:39 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**parse_args(int argc, char **argv)
 
 	if (!check_digit_spaces(argc, argv))
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 7);
 		return (NULL);
 	}
 	arguments = intialize_parse_var(&i, &j, argv);

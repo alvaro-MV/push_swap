@@ -12,11 +12,16 @@ SRCS=dictionary.c \
       parse_args.c \
       main.c
 
+SRCS_BONUS=checker_ops_a.c \
+           checker_ops_b.c \
+           checker.c
+
 LIB_DIR=./lib
 LIB_SRCS=$(wildcard $(LIB_DIR)/*.c)
 LIBFT=./lib/libft.a
 
 NAME=push_swap
+NAME_BONUS=checker
 CC=cc -Wall -Werror -Wextra
 
 ifeq ($(DEBUG), 1)
@@ -24,6 +29,7 @@ ifeq ($(DEBUG), 1)
 endif
 
 OBJ=$(patsubst %.c, %.o, $(SRCS))
+OBJ_BONUS=$(patsubst %.c, %.o, $(SRCS_BONUS))
 
 all: $(LIBFT) $(NAME)
 
@@ -36,6 +42,11 @@ $(LIBFT): $(LIB_SRCS)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) -o $@
 
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJ_BONUS)
+	$(CC) $(OBJ) $(OBJ_BONUS) $(LIBFT) -o $@
+
 clean:
 	rm -rf $(OBJ)
 fclean:
@@ -46,4 +57,4 @@ re:
 norm: 
 	norminette $(SRCS)
 
-.PHONY:all clean fclean re norm
+.PHONY:all bonus clean fclean re norm

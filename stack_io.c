@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_io.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/20 16:23:35 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:44:28 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ stack_head	*push_numbers_a(stack_head *a, int *list_numbers, int i)
 	return (a);
 }
 
+void	free_all(stack_head *a, char **argv, int *ln)
+{
+	if (a != NULL)
+		stack_clean(a);
+	if (!argv)
+		ft_free_array(argv);
+	if (!ln)
+		free(ln);
+}
+
 stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 {
 	int			*list_numbers;
@@ -55,46 +65,46 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 		return (stack_clean(a), ft_free_array(argv), NULL);
 	list_numbers = malloc(count_numbers(argv) * sizeof(int));
 	if (list_numbers == NULL)
-		return (stack_clean(a), ft_free_array(argv), free(list_numbers), NULL);
+		return (free_all(a, argv, NULL), NULL);
 	while (argv[i])
 	{
 		list_numbers[i] = ft_atoi(argv[i]);
 		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i + 1))
-			return (stack_clean(a), ft_free_array(argv), NULL);
+			return (free_all(a, argv, list_numbers), NULL);
 		i++;
 	}
 	if (is_sorted(list_numbers, argc) || !push_numbers_a(a, list_numbers, i))
-		return (stack_clean(a), ft_free_array(argv), free(list_numbers), NULL);
+		return (free_all(a, argv, list_numbers), NULL);
 	a->len = (size_t) count_numbers(argv);
 	return (a);
 }
 
-void	print_state(stack_head *a, stack_head *b)
-{
-	stack_node	*head_a;
-	stack_node	*head_b;
+//void	print_state(stack_head *a, stack_head *b)
+//{
+	//stack_node	*head_a;
+	//stack_node	*head_b;
 
-	head_a = a->head;
-	head_b = b->head;
-	ft_printf("\n");
-	while (head_a != NULL || head_b != NULL)
-	{
-		if (head_a != NULL)
-		{
-			ft_printf("%i-->%i", stack_read(head_a), head_a->index);
-			head_a = head_a->next;
-		}
-		ft_printf("\t");
-		if (head_b != NULL)
-		{
-			ft_printf("%i-->%i", stack_read(head_b), head_b->index);
-			head_b = head_b->next;
-		}
-		ft_printf("\n");
-	}
-	ft_printf("-\t-\n");
-	ft_printf("a\tb\n-------------------\n");
-}
+	//head_a = a->head;
+	//head_b = b->head;
+	//ft_printf("\n");
+	//while (head_a != NULL || head_b != NULL)
+	//{
+		//if (head_a != NULL)
+		//{
+			//ft_printf("%i-->%i", stack_read(head_a), head_a->index);
+			//head_a = head_a->next;
+		//}
+		//ft_printf("\t");
+		//if (head_b != NULL)
+		//{
+			//ft_printf("%i-->%i", stack_read(head_b), head_b->index);
+			//head_b = head_b->next;
+		//}
+		//ft_printf("\n");
+	//}
+	//ft_printf("-\t-\n");
+	//ft_printf("a\tb\n-------------------\n");
+//}
 
 dictionary	*get_dict_from_stack(stack_head *a, int *array)
 {

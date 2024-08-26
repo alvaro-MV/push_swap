@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:10:50 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/20 16:10:51 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:17:17 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,44 +71,3 @@ void	dict_delete(dictionary *dic)
 	free(dic->entries);
 	free(dic);
 }
-
-//#include "sort_algorithms.h"
-//#include "stack_ops.h"
-//#include "lib/include/libft.h"
-//#include "quicksort.h"
-//#include "stack_io.h"
-
-//int main(int argc, char **argv)
-//{
-    //int    i = 0;
-    //dic_entry       *entry;
-    //dictionary      *dic = dict_init(15);
-	//stack_head	    *a;
-	//stack_head	    *b;
-    //int             *array;
-
-	//a = ft_calloc(1, sizeof(stack_head));
-	//if (a == NULL)
-		//return (-1);
-	//b = ft_calloc(1, sizeof(stack_head));
-	//if (b == NULL)
-		//return (-1);
-	//argv++;
-    //argv = parse_args(argc - 1, argv);
-    //a = read_list_argum(argc-1, argv, a);
-    //if (a  == NULL)
-        //return (0);
-    //array = get_array(a);
-    //i = 0;
-    //while (i < argc - 1)
-    //{
-        //entry = (dic_entry*) malloc(sizeof(dic_entry));
-        //entry->key = ft_itoa(array[i]);
-        //entry->value = ft_itoa(i);
-        //dict_insert(&dic, entry);
-        //i++;
-    //}
-    //ft_printf("i:  %d", i);
-    //ft_printf("dic:get val: %s", dict_get(dic, "27"));
-    //dict_delete(dic);
-//}

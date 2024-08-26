@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:16:11 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/20 16:18:28 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:18:09 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,35 +77,3 @@ void	quicksort(int *array, int cursor_i, int cursor_d)
 	quicksort(array, cursor_i, pivot_index - 1);
 	quicksort(array, pivot_index + 1, cursor_d);
 }
-
-//int	main(int argc, char **argv)
-//{
-	//stack_head	*a;
-	////stack	*b;
-	//int		*array;
-	//int		len;
-
-	//a = (stack_head*) malloc(sizeof(stack_head));
-	//a->head = NULL;
-	////b = NULL;
-    //len = 0;
-	//if (argc > 1)
-	//{
-		//a = read_list_argum(argc-1, argv, a);
-		//if (a  == NULL)
-		//{
-			//ft_printf("repeated integers.");
-			//return (0);
-		//}
-		//array = get_array(a);
-		//ft_printf("\n");
-        //quicksort(array, 0, a->len - 1);
-        //while (len < a->len)
-		//{
-			//ft_printf("%d\n", array[len]);
-			//len++;
-		//}
-		//stack_clean(a);
-	//}
-	//return (0);
-//}
