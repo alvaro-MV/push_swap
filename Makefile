@@ -52,9 +52,9 @@ $(NAME_BONUS): $(OBJ_BONUS)
 	$(CC) $(OBJ_DEF) $(OBJ_BONUS) $(LIBFT) -o $@
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(OBJ_BONUS)
 fclean:
-	rm -rf $(OBJ) $(NAME) $(NAME_BONUS)
+	rm -rf $(OBJ) $(OBJ_BONUS) $(NAME) $(NAME_BONUS)
 re:
 	@make fclean
 	@make all

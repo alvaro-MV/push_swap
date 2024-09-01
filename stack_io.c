@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/26 19:44:28 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/01 18:35:45 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ stack_head	*push_numbers_a(stack_head *a, int *list_numbers, int i)
 	return (a);
 }
 
-void	free_all(stack_head *a, char **argv, int *ln)
+void	free_all(stack_head *a, int *ln)
 {
 	if (a != NULL)
 		stack_clean(a);
-	if (!argv)
-		ft_free_array(argv);
-	if (!ln)
+	if (ln)
 		free(ln);
 }
 
@@ -65,17 +63,18 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 		return (stack_clean(a), ft_free_array(argv), NULL);
 	list_numbers = malloc(count_numbers(argv) * sizeof(int));
 	if (list_numbers == NULL)
-		return (free_all(a, argv, NULL), NULL);
+		return (free_all(a, NULL), NULL);
 	while (argv[i])
 	{
 		list_numbers[i] = ft_atoi(argv[i]);
 		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i + 1))
-			return (free_all(a, argv, list_numbers), NULL);
+			return (free_all(a, list_numbers), NULL);
 		i++;
 	}
 	if (is_sorted(list_numbers, argc) || !push_numbers_a(a, list_numbers, i))
-		return (free_all(a, argv, list_numbers), NULL);
+		return (free_all(a, list_numbers), NULL);
 	a->len = (size_t) count_numbers(argv);
+	free_all(NULL, list_numbers);
 	return (a);
 }
 
