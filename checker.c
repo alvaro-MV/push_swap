@@ -40,7 +40,7 @@ int	map_instructions(char *instr, stack_head *a, stack_head *b)
 		return (0);
 }
 
-freee(char *argv, stack_head *a, stack_head *b)
+void	freee(char **argv, stack_head *a, stack_head *b)
 {
 	ft_free_array(argv);
 	stack_clean(a);

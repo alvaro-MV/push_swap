@@ -12,6 +12,9 @@ SRCS=dictionary.c \
       parse_args.c \
       main.c
 
+SRCS_DEF=$(filter-out main.c, $(SRCS))
+
+
 SRCS_BONUS=checker_ops_a.c \
            checker_ops_b.c \
            checker.c
@@ -29,6 +32,7 @@ ifeq ($(DEBUG), 1)
 endif
 
 OBJ=$(patsubst %.c, %.o, $(SRCS))
+OBJ_DEF=$(patsubst %.c, %.o, $(SRCS_DEF))
 OBJ_BONUS=$(patsubst %.c, %.o, $(SRCS_BONUS))
 
 all: $(LIBFT) $(NAME)
@@ -42,15 +46,15 @@ $(LIBFT): $(LIB_SRCS)
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) -o $@
 
-bonus: $(NAME_BONUS)
+bonus: $(NAME) $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJ_BONUS)
-	$(CC) $(OBJ) $(OBJ_BONUS) $(LIBFT) -o $@
+	$(CC) $(OBJ_DEF) $(OBJ_BONUS) $(LIBFT) -o $@
 
 clean:
 	rm -rf $(OBJ)
 fclean:
-	rm -rf $(OBJ) $(NAME)
+	rm -rf $(OBJ) $(NAME) $(NAME_BONUS)
 re:
 	@make fclean
 	@make all
