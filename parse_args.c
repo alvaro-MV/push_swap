@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 16:22:59 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/26 18:42:39 by alvaro           ###   ########.fr       */
+/*   Created: 2024/09/09 14:03:36 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/09/09 14:56:05by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/include/libft.h"
+#include "stack_io.h"
 
 int	check_digit_spaces(int argc, char **argv)
 {
@@ -40,40 +41,19 @@ int	check_digit_spaces(int argc, char **argv)
 	return (1);
 }
 
-int	count_numbers(char **argv)
-{
-	int	i;
-	int	j;
-	int	counter;
-	int	flag;
-
-	i = 0;
-	counter = 0;
-	while (argv[i])
-	{
-		j = 0;
-		flag = 1;
-		while (argv[i][j])
-		{
-			if (argv[i][j] != 32 && flag)
-			{
-				counter++;
-				flag = 0;
-			}
-			else if (argv[i][j] == 32)
-				flag = 1;
-			j++;
-		}
-		i++;
-	}
-	return (counter);
-}
-
-void	fill_args(char **arg_expansion, char **arguments, int *j)
+int	fill_args(char **arg_expansion, char **arguments, int *j)
 {
 	unsigned int	idx_arg_exp;
 
 	idx_arg_exp = 0;
+	if (only_spaces(arg_expansion) == 1)
+	{
+		arguments[*j] = ft_strdup(" ");
+		*j = *j + 1;
+		ft_free_array(arg_expansion);
+		ft_printf("Error\n");
+		return (0);
+	}
 	while (arg_expansion[idx_arg_exp])
 	{
 		if (arg_expansion[idx_arg_exp][0] != ' ')
@@ -85,6 +65,7 @@ void	fill_args(char **arg_expansion, char **arguments, int *j)
 			free(arg_expansion[idx_arg_exp]);
 		idx_arg_exp++;
 	}
+	return (1);
 }
 
 char	**intialize_parse_var(int *i, int *j, char **argv)
@@ -119,29 +100,11 @@ char	**parse_args(int argc, char **argv)
 		arg_expansion = ft_split(argv[i], ' ');
 		if (arg_expansion == NULL)
 			return (ft_free_array(arguments), NULL);
-		fill_args(arg_expansion, arguments, &j);
+		if (!fill_args(arg_expansion, arguments, &j))
+			return (ft_free_array(arguments), NULL);
 		free(arg_expansion);
 		i++;
 	}
 	arguments[j] = NULL;
 	return (arguments);
 }
-
-//int	main(int argc, char **argv)
-//{
-	//char	**args_parsed;
-	//char	*freed_arg;
-
-	//argv++;
-	//args_parsed = parse_args(argc - 1, argv);
-	//if (args_parsed == NULL)
-		//return (-1);
-	//while(*args_parsed)
-	//{
-		//freed_arg = *args_parsed;
-		//ft_printf("%s\n", *args_parsed);
-		//free(freed_arg);
-		//args_parsed++;
-	//}
-	//return (0);
-//}

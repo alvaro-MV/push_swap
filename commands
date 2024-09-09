@@ -1,1 +1,0 @@
-cc main.c stack_io.c stack_def.c stack_ops*.c quicksort.c sort_algorithms.c lib/libft.a -g

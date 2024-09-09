@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_io.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/09/01 18:35:45 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/09 16:16:37 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,32 +78,32 @@ stack_head	*read_list_argum(int argc, char **argv, stack_head *a)
 	return (a);
 }
 
-//void	print_state(stack_head *a, stack_head *b)
-//{
-	//stack_node	*head_a;
-	//stack_node	*head_b;
+void	print_state(stack_head *a, stack_head *b)
+{
+	stack_node	*head_a;
+	stack_node	*head_b;
 
-	//head_a = a->head;
-	//head_b = b->head;
-	//ft_printf("\n");
-	//while (head_a != NULL || head_b != NULL)
-	//{
-		//if (head_a != NULL)
-		//{
-			//ft_printf("%i-->%i", stack_read(head_a), head_a->index);
-			//head_a = head_a->next;
-		//}
-		//ft_printf("\t");
-		//if (head_b != NULL)
-		//{
-			//ft_printf("%i-->%i", stack_read(head_b), head_b->index);
-			//head_b = head_b->next;
-		//}
-		//ft_printf("\n");
-	//}
-	//ft_printf("-\t-\n");
-	//ft_printf("a\tb\n-------------------\n");
-//}
+	head_a = a->head;
+	head_b = b->head;
+	ft_printf("\n");
+	while (head_a != NULL || head_b != NULL)
+	{
+		if (head_a != NULL)
+		{
+			ft_printf("%i-->%i", stack_read(head_a), head_a->index);
+			head_a = head_a->next;
+		}
+		ft_printf("\t");
+		if (head_b != NULL)
+		{
+			ft_printf("%i-->%i", stack_read(head_b), head_b->index);
+			head_b = head_b->next;
+		}
+		ft_printf("\n");
+	}
+	ft_printf("-\t-\n");
+	ft_printf("a\tb\n-------------------\n");
+}
 
 dictionary	*get_dict_from_stack(stack_head *a, int *array)
 {
