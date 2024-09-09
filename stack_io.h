@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:59:16 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/09 15:26:09 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:29:12 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "stack_ops.h"
 # include "lib/include/libft.h"
 
-stack_head	*read_list_argum(int argc, char **argv, stack_head *a);
+stack_head	*read_list_argum(char **argv, stack_head *a);
 void		print_state(stack_head *a, stack_head *b);
 dictionary	*get_dict_from_stack(stack_head *a, int *array);
 void		ids_to_stack_from_dic(stack_head *a, dictionary *dic);

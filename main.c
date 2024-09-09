@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 19:50:51 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/09 16:09:32 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:32:12 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		argv = parse_args(argc - 1, argv);
-		a = read_list_argum(argc - 1, argv, a);
+		a = read_list_argum(argv, a);
 		if (a == NULL)
 			return (ft_free_array(argv), stack_clean(b), 0);
 		ft_free_array(argv);
