@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:11:26 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 14:12:26 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:17:04 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_stack_head	*read_list_argum(char **argv, t_stack_head *a)
 	{
 		list_numbers[i] = ft_atoi(argv[i]);
 		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i + 1))
-			return (free_all(a, list_numbers), ft_free_array(argv), NULL);
+			return (free_all(a, list_numbers), NULL);
 		i++;
 	}
 	if (is_sorted(list_numbers, i) || !push_numbers_a(a, list_numbers, i))

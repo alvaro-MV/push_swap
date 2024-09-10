@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:18:05 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/09 15:18:06 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:57:22 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_free_array(char **marr)
 {
 	char			*free_ptr;
 	unsigned int	i;
-
 	if (marr == NULL)
 		return ;
 	i = 0;
