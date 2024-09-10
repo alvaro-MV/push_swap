@@ -5,6 +5,8 @@
 #include "stack_io.h"
 #include "verify.h"
 
+//alvarado@psi.ucm.es
+
 int	map_instructions(char *instr, t_stack_head *a, t_stack_head *b)
 {
 	if (ft_strcmp(instr, "sa\n") == 0)
@@ -100,7 +102,8 @@ int	main(int argc, char **argv)
 		if (!parse_instr(a, b))
 			return (freee(argv, a, b), 0);
 		is_stacks_sort(a, b);
-		freee(argv, a, b);
+		freee(argv, NULL, NULL);
 	}
+	freee(NULL, a, b);
 	return (0);
 }
