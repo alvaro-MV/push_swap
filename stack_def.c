@@ -3,18 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   stack_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/09/10 09:45:31 by alvaro           ###   ########.fr       */
+/*   Created: 2024/09/10 12:11:07 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/09/10 12:11:08 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* Para aclararnos: initializa, --> lo mismo que el de abajo
-push (que pongas uno encima), --> lstnew + addback.
-pop (elimina y devuelve) y --> delone y devolver el contenido
-read (lee el ultimo) --> accede al contenido. 
-*/
 
 #include "stack_def.h"
 #include "lib/include/libft.h"

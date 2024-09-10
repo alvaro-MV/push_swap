@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/10 12:09:02 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/09/10 12:39:32 by alvmoral         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "sort_algorithms.h"
 #include "stack_ops.h"
 #include "lib/include/libft.h"
@@ -31,9 +43,12 @@ int	map_instructions(char *instr, t_stack_head *a, t_stack_head *b)
 
 void	freee(char **argv, t_stack_head *a, t_stack_head *b)
 {
-	ft_free_array(argv);
-	stack_clean(a);
-	stack_clean(b);
+	if (argv != NULL)
+		ft_free_array(argv);
+	if (a != NULL)
+		stack_clean(a);
+	if (b != NULL)
+		stack_clean(b);
 }
 
 void	is_stacks_sort(t_stack_head *a, t_stack_head *b)
