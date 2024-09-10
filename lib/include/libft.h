@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:00:35 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/12 12:48:28 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/10 12:52:22 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_itoa(int n);
-int	ft_itoa_w(int nb);
+int		ft_itoa_w(int nb);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -65,8 +65,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
-int	ft_strncmp(char *s1, char *s2, unsigned int n);
-int     ft_strcmp(char *s1, char *s2);
+int		ft_strncmp(char *s1, char *s2, unsigned int n);
+int		ft_strcmp(char *s1, char *s2);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -75,16 +75,16 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 //printf 
-int	ft_xtoa_w(unsigned int nb, char c);
-int	ft_utoa_w(unsigned int nb);
-int	ft_itoa_w(int nb);
-int	ft_ptoa_w(unsigned long long nb);
-int	ft_printf(char const *s1, ...);
-int	ft_strtoa_w(char *str);
-int	ft_chtoa_w(unsigned int c);
+int		ft_xtoa_w(unsigned int nb, char c);
+int		ft_utoa_w(unsigned int nb);
+int		ft_itoa_w(int nb);
+int		ft_ptoa_w(unsigned long long nb);
+int		ft_printf(char const *s1, ...);
+int		ft_strtoa_w(char *str);
+int		ft_chtoa_w(unsigned int c);
 
 //get_next_line
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 
 //RNG functions and MACROS
 
@@ -95,11 +95,11 @@ char    *get_next_line(int fd);
 # define M 3
 # define A_M 0x9908b0df
 
-typedef struct  MTRandGen
-{
-    int vector[N];
-    int index;
-}       MTrand;
-unsigned int get_random_value(int seed);
+//typedef struct	MTRandGen
+//{
+	//int	vector[N];
+	//int	index;
+//}		MTrand;
+//unsigned int	get_random_value(int seed);
 
 #endif
