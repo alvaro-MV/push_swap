@@ -107,7 +107,7 @@ $(NAME): $(OBJ)
 bonus: $(NAME) $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJ_BONUS)
-	$(CC) $(OBJ_DEF) $(OBJ_BONUS) $(LIBFT) -o $@
+	$(CC) $(OBJ_DEF) $(OBJ_BONUS) $(LIBFT) $(DEBUGFLAGS) -o $@ 
 
 clean:
 	rm -rf $(OBJ) $(OBJ_BONUS)

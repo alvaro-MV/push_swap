@@ -5,106 +5,131 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 12:50:45 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:50:46 by alvmoral         ###   ########.fr       */
+/*   Created: 2024/06/06 16:37:28 by alvmoral          #+#    #+#             */
+/*   Updated: 2024/09/10 13:39:39 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/get_next_line.h"
-#include "include/libft.h"
 
-char	*ft_get_line(char *leftovers)
+static void	ft_bzero(void *s, size_t n)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!leftovers[i])
-		return (NULL);
-	while (leftovers[i] && leftovers[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (leftovers[i] && leftovers[i] != '\n')
+	if (n > 0)
 	{
-		str[i] = leftovers[i];
-		i++;
-	}
-	if (leftovers[i] == '\n')
-	{
-		str[i] = leftovers[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_leftovers(char *leftovers)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	while (leftovers[i] && leftovers[i] != '\n')
-		i++;
-	if (!leftovers[i])
-	{
-		free(leftovers);
-		return (NULL);
-	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(leftovers) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (leftovers[i])
-		str[j++] = leftovers[i++];
-	str[j] = '\0';
-	free(leftovers);
-	leftovers = NULL;
-	return (str);
-}
-
-char	*ft_read(int fd, char *text)
-{
-	char	*buff;
-	int		rd_bytes;
-
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr(text, '\n') && rd_bytes != 0)
-	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		while (n--)
 		{
-			if (text)
-				free(text);
-			free(buff);
-			return (NULL);
+			*(char *) s = 0;
+			s++;
 		}
-		buff[rd_bytes] = '\0';
-		text = ft_strjoin(text, buff);
 	}
-	free(buff);
-	return (text);
+}
+
+static char	*ft_strdup(char *s1)
+{
+	char	*ptr;
+	int		len;
+	int		i;
+
+	if (s1 == NULL)
+		return (NULL);
+	len = 0;
+	i = 0;
+	while (s1[len])
+		len++;
+	ptr = (char *) malloc(len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+static int	get_lst_from_reads(int fd, t_list_g **lst)
+{
+	char		*read_buffer;
+	t_list_g	*last_node;
+	int			bytes_read;
+	int			eol_present;
+
+	bytes_read = 1;
+	last_node = *lst;
+	read_buffer = (char *) malloc(BUFFER_SIZE * sizeof(char) + 1);
+	while (bytes_read)
+	{
+		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
+		if (bytes_read == 0 || bytes_read < 0)
+			return (free(read_buffer), 0);
+		read_buffer[bytes_read] = '\0';
+		ft_lstadd_back_g(&last_node, ft_strdup(read_buffer));
+		if (*lst == NULL)
+			return (0);
+		eol_present = (ft_strchr_g(read_buffer, '\n') != NULL);
+		if (eol_present)
+			break ;
+		last_node = last_node->next;
+	}
+	free(read_buffer);
+	return (bytes_read);
+}
+
+static void	fill_buffers(t_list_g *lst, char *return_buffer, char *after_eol)
+{
+	t_list_g	*first_node;
+	char		*lst_content;
+	int			i;
+
+	if (lst == NULL)
+		return ;
+	i = 0;
+	first_node = lst;
+	while (lst)
+	{
+		lst_content = lst->content;
+		while (*lst_content && *lst_content != '\n')
+			return_buffer[i++] = *lst_content++;
+		if (*lst_content == '\n')
+		{
+			return_buffer[i++] = *lst_content++;
+			break ;
+		}
+		lst = lst->next;
+	}
+	return_buffer[i] = '\0';
+	while (*lst_content)
+		*after_eol++ = *lst_content++;
+	*after_eol = '\0';
+	ft_lstclear_g(&first_node);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*leftovers;
+	static char	after_eol[BUFFER_SIZE];
+	char		*return_buffer;
+	t_list_g	*lst;
+	int			bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	leftovers = ft_read(fd, leftovers);
-	if (!leftovers)
+	if (fd < 0)
 		return (NULL);
-	line = ft_get_line(leftovers);
-	leftovers = ft_leftovers(leftovers);
-	return (line);
+	lst = NULL;
+	bytes_read = 1;
+	ft_lstadd_front_g(&lst, ft_strdup(after_eol));
+	if (lst == NULL)
+		return (NULL);
+	if (ft_strchr_g(after_eol, '\n') == NULL)
+		bytes_read = get_lst_from_reads(fd, &lst);
+	return_buffer = (char *) malloc(BUFFER_SIZE * ft_lstsize_g(lst) + 1);
+	ft_bzero(return_buffer, BUFFER_SIZE * (ft_lstsize_g(lst) - 1) + 1);
+	fill_buffers(lst, return_buffer, after_eol);
+	if (bytes_read == 0)
+		after_eol[0] = '\0';
+	if (return_buffer[0] == '\0' && bytes_read <= 0)
+	{
+		free(return_buffer);
+		return (NULL);
+	}
+	return (return_buffer);
 }

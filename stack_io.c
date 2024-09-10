@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:11:26 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:11:27 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:12:26 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 #include "verify.h"
 #include "dictionary.h"
 #include "quicksort.h"
-
-/* 
-	Gestionar:
-
-	-Valor no numérico. --> Liberar todo lo anterior.
-
-	-Números ordenados?
-
-	-Son iguales?
-	
-	-Contar numero de argumentos.
-
-	Coger toda la lista. Ver cáracter a carácter.
- */
 
 t_stack_head	*push_numbers_a(t_stack_head *a, int *list_numbers, int i)
 {
@@ -68,7 +54,7 @@ t_stack_head	*read_list_argum(char **argv, t_stack_head *a)
 	{
 		list_numbers[i] = ft_atoi(argv[i]);
 		if (not_valid_input(argv[i], list_numbers, list_numbers[i], i + 1))
-			return (free_all(a, list_numbers), NULL);
+			return (free_all(a, list_numbers), ft_free_array(argv), NULL);
 		i++;
 	}
 	if (is_sorted(list_numbers, i) || !push_numbers_a(a, list_numbers, i))

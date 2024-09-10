@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:10:03 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:10:06 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:13:47 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	fill_args(char **arg_expansion, char **arguments, int *j)
 		arguments[*j] = ft_strdup(" ");
 		*j = *j + 1;
 		ft_free_array(arg_expansion);
-		ft_printf("Error\n");
 		return (0);
 	}
 	while (arg_expansion[idx_arg_exp])

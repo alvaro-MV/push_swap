@@ -15,6 +15,7 @@
         "stdio.h": "c",
         "cctype": "c",
         "stack_io.h": "c",
-        "verify.h": "c"
+        "verify.h": "c",
+        "get_next_line.h": "c"
     }
 }

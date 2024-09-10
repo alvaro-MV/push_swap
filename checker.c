@@ -6,13 +6,14 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:09:02 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:39:32 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:10:30 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort_algorithms.h"
 #include "stack_ops.h"
 #include "lib/include/libft.h"
+#include "lib/include/get_next_line.h"
 #include "quicksort.h"
 #include "stack_io.h"
 #include "verify.h"
@@ -88,6 +89,7 @@ int	parse_instr(t_stack_head *a, t_stack_head *b)
 		valid_instr = map_instructions(instr, a, b);
 		if (!valid_instr)
 		{
+			free(instr);
 			ft_printf("KO\n");
 			return (0);
 		}
