@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   stack_def.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 18:14:26 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/05 20:10:09 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:36:41 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_H
-# define BASIC_H
+#ifndef STACK_DEF_H
+# define STACK_DEF_H
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -22,19 +22,19 @@ typedef struct stack_n
 	int					content;
 	struct stack_n		*next;
 	int					index;
-}						stack_node;
+}						t_stack_node;
 
 typedef struct stack_h
 {
-	int			len;
-	stack_node	*head;
-	dictionary	*dic;
-}				stack_head;
+	int				len;
+	t_stack_node	*head;
+	t_dictionary	*dic;
+}				t_stack_head;
 
-void            stack_push(stack_head *stack, stack_node *new_n);
-stack_node	    *stack_pop(stack_head *stack_list);
-int				stack_read(stack_node *node);
-void			stack_clean(stack_head *s);
-unsigned int	stack_size(stack_head *stack_list);
+void			stack_push(t_stack_head *stack, t_stack_node *new_n);
+t_stack_node	*stack_pop(t_stack_head *stack_list);
+int				stack_read(t_stack_node *node);
+void			stack_clean(t_stack_head *s);
+unsigned int	stack_size(t_stack_head *stack_list);
 
 #endif

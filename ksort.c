@@ -6,7 +6,7 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:41:01 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/26 18:20:11 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/10 09:43:05 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include "lib/include/libft.h"
 #include "verify.h"
 
-int	count_r(stack_head *stack, int idx)
+int	count_r(t_stack_head *stack, int idx)
 {
-	int			count;
-	stack_node	*tmp;
+	int				count;
+	t_stack_node	*tmp;
 
 	count = 0;
 	tmp = stack->head;
@@ -34,10 +34,10 @@ int	count_r(stack_head *stack, int idx)
 	return (0);
 }
 
-int	count_rr(stack_head *stack, int idx)
+int	count_rr(t_stack_head *stack, int idx)
 {
-	int			count;
-	stack_node	*tmp;
+	int				count;
+	t_stack_node	*tmp;
 
 	count = stack->len;
 	tmp = stack->head;
@@ -68,7 +68,7 @@ int	ft_sqrt(int number)
 	return (i - 1);
 }
 
-void	k_sort_1(stack_head *a, stack_head *b)
+void	k_sort_1(t_stack_head *a, t_stack_head *b)
 {
 	int	pivot;
 	int	i;
@@ -94,7 +94,7 @@ void	k_sort_1(stack_head *a, stack_head *b)
 	k_sort_2(a, b);
 }
 
-void	k_sort_2(stack_head *a, stack_head *b)
+void	k_sort_2(t_stack_head *a, t_stack_head *b)
 {
 	int		idx;
 	int		count_rot;

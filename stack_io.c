@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_io.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:08:04 by alvaro            #+#    #+#             */
-/*   Updated: 2024/09/09 17:30:56 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:46:56 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 	Coger toda la lista. Ver cáracter a carácter.
  */
 
-stack_head	*push_numbers_a(stack_head *a, int *list_numbers, int i)
+t_stack_head	*push_numbers_a(t_stack_head *a, int *list_numbers, int i)
 {
-	stack_node	*number;
+	t_stack_node	*number;
 
 	while (i--)
 	{
-		number = (stack_node *) malloc(sizeof(stack_node));
+		number = (t_stack_node *) malloc(sizeof(t_stack_node));
 		if (number == NULL)
 			return (NULL);
 		number->content = list_numbers[i];
@@ -45,7 +45,7 @@ stack_head	*push_numbers_a(stack_head *a, int *list_numbers, int i)
 	return (a);
 }
 
-void	free_all(stack_head *a, int *ln)
+void	free_all(t_stack_head *a, int *ln)
 {
 	if (a != NULL)
 		stack_clean(a);
@@ -53,7 +53,7 @@ void	free_all(stack_head *a, int *ln)
 		free(ln);
 }
 
-stack_head	*read_list_argum(char **argv, stack_head *a)
+t_stack_head	*read_list_argum(char **argv, t_stack_head *a)
 {
 	int			*list_numbers;
 	int			i;
@@ -78,10 +78,10 @@ stack_head	*read_list_argum(char **argv, stack_head *a)
 	return (a);
 }
 
-//void	print_state(stack_head *a, stack_head *b)
+//void	print_state(t_stack_head *a, t_stack_head *b)
 //{
-	//stack_node	*head_a;
-	//stack_node	*head_b;
+	//t_stack_node	*head_a;
+	//t_stack_node	*head_b;
 
 	//head_a = a->head;
 	//head_b = b->head;
@@ -105,11 +105,11 @@ stack_head	*read_list_argum(char **argv, stack_head *a)
 	//ft_printf("a\tb\n-------------------\n");
 //}
 
-dictionary	*get_dict_from_stack(stack_head *a, int *array)
+t_dictionary	*get_dict_from_stack(t_stack_head *a, int *array)
 {
 	int				i;
-	dic_entry		*entry;
-	dictionary		*dic;
+	t_dic_entry		*entry;
+	t_dictionary	*dic;
 
 	i = 0;
 	dic = dict_init(2 * (a->len));
@@ -117,7 +117,7 @@ dictionary	*get_dict_from_stack(stack_head *a, int *array)
 		return (NULL);
 	while (i < a->len)
 	{
-		entry = (dic_entry *) malloc(sizeof(dic_entry));
+		entry = (t_dic_entry *) malloc(sizeof(t_dic_entry));
 		if (entry == NULL)
 			return (dict_delete(dic), NULL);
 		entry->key = ft_itoa(array[i]);
@@ -128,10 +128,10 @@ dictionary	*get_dict_from_stack(stack_head *a, int *array)
 	return (dic);
 }
 
-void	ids_to_stack_from_dic(stack_head *a, dictionary *dic)
+void	ids_to_stack_from_dic(t_stack_head *a, t_dictionary *dic)
 {
-	stack_node	*tmp;
-	char		*content;
+	t_stack_node	*tmp;
+	char			*content;
 
 	tmp = a->head;
 	while (tmp)

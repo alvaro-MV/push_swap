@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops_a.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:21:07 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/20 16:21:08 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:26:05 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 	main.
  */
 
-void	stack_swap_a(stack_head *a)
+void	stack_swap_a(t_stack_head *a)
 {
-	stack_node	*first_item;
-	stack_node	*second_item;
+	t_stack_node	*first_item;
+	t_stack_node	*second_item;
 
 	first_item = stack_pop(a);
 	second_item = stack_pop(a);
@@ -34,9 +34,9 @@ void	stack_swap_a(stack_head *a)
 	ft_printf("sa\n");
 }
 
-void	stack_push_a_b(stack_head *a, stack_head *b)
+void	stack_push_a_b(t_stack_head *a, t_stack_head *b)
 {
-	stack_node	*content1;
+	t_stack_node	*content1;
 
 	content1 = stack_pop(a);
 	if (content1 == NULL)
@@ -45,11 +45,11 @@ void	stack_push_a_b(stack_head *a, stack_head *b)
 	ft_printf("pb\n");
 }
 
-void	stack_rotate_a(stack_head *a)
+void	stack_rotate_a(t_stack_head *a)
 {
-	stack_node	*head;
-	stack_node	*holder;
-	stack_node	*item;
+	t_stack_node	*head;
+	t_stack_node	*holder;
+	t_stack_node	*item;
 
 	if (stack_size(a) > 1)
 	{
@@ -67,11 +67,11 @@ void	stack_rotate_a(stack_head *a)
 	}
 }
 
-void	stack_reverse_rotate_a(stack_head *a)
+void	stack_reverse_rotate_a(t_stack_head *a)
 {
-	stack_node	*head;
-	stack_node	*penultimate;
-	stack_node	*last;
+	t_stack_node	*head;
+	t_stack_node	*penultimate;
+	t_stack_node	*last;
 
 	head = a->head;
 	while (head != NULL)

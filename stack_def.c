@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:07:39 by alvaro            #+#    #+#             */
-/*   Updated: 2024/08/20 16:22:38 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:45:31 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ read (lee el ultimo) --> accede al contenido.
 #include "dictionary.h"
 #include <stdio.h>
 
-void	stack_push(stack_head *stack, stack_node *new_n)
+void	stack_push(t_stack_head *stack, t_stack_node *new_n)
 {
 	if (new_n == NULL)
 		return ;
@@ -30,15 +30,15 @@ void	stack_push(stack_head *stack, stack_node *new_n)
 	stack->len++;
 }
 
-int	stack_read(stack_node *node)
+int	stack_read(t_stack_node *node)
 {
 	return (node->content);
 }
 
-stack_node	*stack_pop(stack_head *stack_list)
+t_stack_node	*stack_pop(t_stack_head *stack_list)
 {
-	stack_node	*head;
-	stack_node	*holder;
+	t_stack_node	*head;
+	t_stack_node	*holder;
 
 	if (stack_list == NULL)
 		return (NULL);
@@ -51,10 +51,10 @@ stack_node	*stack_pop(stack_head *stack_list)
 	return (head);
 }
 
-void	stack_clean(stack_head *stack_list)
+void	stack_clean(t_stack_head *stack_list)
 {
-	stack_node	*holder;
-	stack_node	*tmp;
+	t_stack_node	*holder;
+	t_stack_node	*tmp;
 
 	tmp = stack_list->head;
 	while (tmp != NULL)
@@ -66,10 +66,10 @@ void	stack_clean(stack_head *stack_list)
 	free(stack_list);
 }
 
-unsigned int	stack_size(stack_head *stack_list)
+unsigned int	stack_size(t_stack_head *stack_list)
 {
-	stack_node		*temporal;
-	unsigned int	counter;
+	t_stack_node		*temporal;
+	unsigned int		counter;
 
 	counter = 0;
 	temporal = stack_list->head;

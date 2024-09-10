@@ -6,24 +6,24 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:20:18 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/26 19:37:45 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/10 09:45:18 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort_algorithms.h"
 
-void	sort_two(stack_head *stack, char s)
+void	sort_two(t_stack_head *stack, char s)
 {
 	if (stack->head->content > stack->head->next->content)
 		return (swap_dual(stack, s));
 }
 
-void	sort_three(stack_head *stack, char st)
+void	sort_three(t_stack_head *stack, char st)
 {
-	int			f;
-	int			s;
-	int			t;
-	stack_node	*node;
+	int				f;
+	int				s;
+	int				t;
+	t_stack_node	*node;
 
 	node = stack->head;
 	f = node->index;
@@ -43,27 +43,27 @@ void	sort_three(stack_head *stack, char st)
 		rotate_dual(stack, st);
 }
 
-void	compare_and_push(stack_head *a, stack_head *b, \
-int r_count, int rr_count)
+void	compare_and_push(t_stack_head *a, t_stack_head *b, \
+int r_c, int rr_c)
 {
-	if (r_count < rr_count)
+	if (r_c < rr_c)
 	{
-		while (r_count--)
+		while (r_c--)
 			stack_rotate_a(a);
 	}
 	else
 	{
-		while (rr_count--)
+		while (rr_c--)
 			stack_reverse_rotate_a(a);
 	}
 	stack_push_a_b(a, b);
 }
 
-void	push_n_to_b(stack_head *a, stack_head *b, int n_to_b, int init_len)
+void	push_n_to_b(t_stack_head *a, t_stack_head *b, int n_to_b, int init_len)
 {
-	int			r_count;
-	int			rr_count;
-	stack_node	*node;
+	int				r_count;
+	int				rr_count;
+	t_stack_node	*node;
 
 	while (a->len > init_len - n_to_b)
 	{
@@ -88,7 +88,7 @@ void	push_n_to_b(stack_head *a, stack_head *b, int n_to_b, int init_len)
 	}
 }
 
-void	sort_under_7(stack_head *a, stack_head *b)
+void	sort_under_7(t_stack_head *a, t_stack_head *b)
 {
 	int	n_to_b;
 	int	init_len;

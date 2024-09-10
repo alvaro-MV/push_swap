@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:44:10 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/09 13:08:28by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:41:50 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
 
-dictionary	*dict_init(int capacity)
+t_dictionary	*dict_init(int capacity)
 {
-	dictionary	*dic;
-	dic_entry	**entries;
-	int			dic_capacity;
+	t_dictionary	*dic;
+	t_dic_entry		**entries;
+	int				dic_capacity;
 
-	dic = (dictionary *) malloc(sizeof(dictionary));
+	dic = (t_dictionary *) malloc(sizeof(t_dictionary));
 	if (!dic)
 		return (NULL);
 	if (capacity <= 0)
@@ -27,7 +27,7 @@ dictionary	*dict_init(int capacity)
 		dic_capacity = capacity;
 	dic->capacity = dic_capacity;
 	dic->n_elements = 0;
-	entries = (dic_entry **) malloc(dic_capacity * sizeof(dic_entry *));
+	entries = (t_dic_entry **) malloc(dic_capacity * sizeof(t_dic_entry *));
 	if (!entries)
 	{
 		free(dic);
@@ -39,11 +39,11 @@ dictionary	*dict_init(int capacity)
 	return (dic);
 }
 
-void	dict_insert(dictionary **dic_p, dic_entry *entry)
+void	dict_insert(t_dictionary **dic_p, t_dic_entry *entry)
 {
 	unsigned int	hash_entry;
 	unsigned int	index;
-	dictionary		*dic;
+	t_dictionary	*dic;
 
 	if (entry->key == NULL)
 		return ;
@@ -67,7 +67,7 @@ void	dict_insert(dictionary **dic_p, dic_entry *entry)
 	*dic_p = dic;
 }
 
-static void	map_old_values(dictionary *old_dic, dictionary *new_dic)
+static void	map_old_values(t_dictionary *old_dic, t_dictionary *new_dic)
 {
 	unsigned int	i;
 	unsigned int	new_index;
@@ -92,11 +92,11 @@ static void	map_old_values(dictionary *old_dic, dictionary *new_dic)
 	}
 }
 
-int	dict_expand(dictionary **dic_pointer)
+int	dict_expand(t_dictionary **dic_pointer)
 {
-	int			new_capacity;
-	dictionary	*old_dic;
-	dictionary	*new_dic;
+	int				new_capacity;
+	t_dictionary	*old_dic;
+	t_dictionary	*new_dic;
 
 	old_dic = *dic_pointer;
 	new_capacity = old_dic->capacity * 2;

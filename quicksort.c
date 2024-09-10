@@ -6,18 +6,18 @@
 /*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:16:11 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/26 19:18:09 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/10 09:44:27 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "quicksort.h"
 
-int	*get_array(stack_head *a)
+int	*get_array(t_stack_head *a)
 {
-	size_t			i;
-	int				*array;
-	unsigned int	len;
-	stack_node		*tmp;
+	size_t				i;
+	int					*array;
+	unsigned int		len;
+	t_stack_node		*tmp;
 
 	i = 0;
 	len = stack_size(a);

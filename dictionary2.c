@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:10:50 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/09 13:31:44 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:42:18 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dictionary.h"
-#include <string.h>
 
-char	*dict_get(dictionary *dic, char *key)
+char	*dict_get(t_dictionary *dic, char *key)
 {
 	unsigned int	index;
 	unsigned int	counter;
@@ -53,7 +52,7 @@ unsigned int	dict_hash(char *key)
 	return (hash);
 }
 
-void	dict_delete(dictionary *dic)
+void	dict_delete(t_dictionary *dic)
 {
 	unsigned int	i;
 

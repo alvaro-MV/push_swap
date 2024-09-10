@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_ops_b.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:21:28 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/08/20 16:21:38 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/10 09:26:05 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 	Las funciones basca
  */
 
-void	stack_swap_b(stack_head *b)
+void	stack_swap_b(t_stack_head *b)
 {
-	stack_node	*first_item;
-	stack_node	*second_item;
+	t_stack_node	*first_item;
+	t_stack_node	*second_item;
 
 	first_item = stack_pop(b);
 	second_item = stack_pop(b);
@@ -36,9 +36,9 @@ void	stack_swap_b(stack_head *b)
 	ft_printf("sb\n");
 }
 
-void	stack_push_b_a(stack_head *b, stack_head *a)
+void	stack_push_b_a(t_stack_head *b, t_stack_head *a)
 {
-	stack_node	*content1;
+	t_stack_node	*content1;
 
 	content1 = stack_pop(b);
 	if (content1 == NULL)
@@ -53,11 +53,11 @@ void	stack_push_b_a(stack_head *b, stack_head *a)
 	guardar los argumentos.
  */
 
-void	stack_rotate_b(stack_head *b)
+void	stack_rotate_b(t_stack_head *b)
 {
-	stack_node	*head;
-	stack_node	*holder;
-	stack_node	*item;
+	t_stack_node	*head;
+	t_stack_node	*holder;
+	t_stack_node	*item;
 
 	if (stack_size(b) > 1)
 	{
@@ -75,11 +75,11 @@ void	stack_rotate_b(stack_head *b)
 	}
 }
 
-void	stack_reverse_rotate_b(stack_head *b)
+void	stack_reverse_rotate_b(t_stack_head *b)
 {
-	stack_node	*head;
-	stack_node	*penultimate;
-	stack_node	*last;
+	t_stack_node	*head;
+	t_stack_node	*penultimate;
+	t_stack_node	*last;
 
 	head = b->head;
 	while (head != NULL)

@@ -1,9 +1,9 @@
 #include "stack_ops.h"
 
-void	checker_swap_a(stack_head *a)
+void	checker_swap_a(t_stack_head *a)
 {
-	stack_node	*first_item;
-	stack_node	*second_item;
+	t_stack_node	*first_item;
+	t_stack_node	*second_item;
 
 	first_item = stack_pop(a);
 	second_item = stack_pop(a);
@@ -14,9 +14,9 @@ void	checker_swap_a(stack_head *a)
 	stack_push(a, second_item);
 }
 
-void	checker_push_a_b(stack_head *a, stack_head *b)
+void	checker_push_a_b(t_stack_head *a, t_stack_head *b)
 {
-	stack_node	*content1;
+	t_stack_node	*content1;
 
 	content1 = stack_pop(a);
 	if (content1 == NULL)
@@ -24,11 +24,11 @@ void	checker_push_a_b(stack_head *a, stack_head *b)
 	stack_push(b, content1);
 }
 
-void	checker_rotate_a(stack_head *a)
+void	checker_rotate_a(t_stack_head *a)
 {
-	stack_node	*head;
-	stack_node	*holder;
-	stack_node	*item;
+	t_stack_node	*head;
+	t_stack_node	*holder;
+	t_stack_node	*item;
 
 	if (stack_size(a) > 1)
 	{
@@ -45,11 +45,11 @@ void	checker_rotate_a(stack_head *a)
 	}
 }
 
-void	checker_reverse_rotate_a(stack_head *a)
+void	checker_reverse_rotate_a(t_stack_head *a)
 {
-	stack_node	*head;
-	stack_node	*penultimate;
-	stack_node	*last;
+	t_stack_node	*head;
+	t_stack_node	*penultimate;
+	t_stack_node	*last;
 
 	head = a->head;
 	while (head != NULL)
