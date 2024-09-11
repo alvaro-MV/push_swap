@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:09:02 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:39:32 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/11 10:13:13 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort_algorithms.h"
 #include "stack_ops.h"
 #include "lib/include/libft.h"
+#include "lib/include/get_next_line.h"
 #include "quicksort.h"
 #include "stack_io.h"
 #include "verify.h"
@@ -88,7 +89,7 @@ int	parse_instr(t_stack_head *a, t_stack_head *b)
 		valid_instr = map_instructions(instr, a, b);
 		if (!valid_instr)
 		{
-			ft_printf("KO\n");
+			ft_printf("Error\n");
 			return (0);
 		}
 		free(instr);
@@ -108,17 +109,16 @@ int	main(int argc, char **argv)
 	if (b == NULL)
 		return (-1);
 	argv++;
+	argv = parse_args(argc - 1, argv);
 	if (argc > 2)
 	{
-		argv = parse_args(argc - 1, argv);
 		a = read_list_argum(argv, a);
 		if (a == NULL)
-			return (stack_clean(b), 0);
+			return (ft_free_array(argv), stack_clean(b), 0);
 		if (!parse_instr(a, b))
 			return (freee(argv, a, b), 0);
 		is_stacks_sort(a, b);
-		freee(argv, NULL, NULL);
 	}
-	freee(NULL, a, b);
+	freee(argv, a, b);
 	return (0);
 }
