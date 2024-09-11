@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:10:03 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 20:23:11 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:13:51 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	fill_args(char **arg_expansion, char **arguments, int *j)
 	{
 		arguments[*j] = ft_strdup(" ");
 		*j = *j + 1;
+		ft_printf("Error\n");
 		ft_free_array(arg_expansion);
 		return (0);
 	}
