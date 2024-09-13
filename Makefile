@@ -48,13 +48,11 @@ OBJ_BONUS=$(patsubst %.c, %.o, $(SRCS_BONUS))
 
 all: $(NAME)
 
-$(LIBFT): 
-	@make -C $(LIB_DIR)
-
 %.o: %.c
 	$(CC) $(DEBUGFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
+	@make -C ./lib
 	$(CC) $(OBJ) $(LIBFT) -o $@
 
 bonus: $(NAME) $(NAME_BONUS)
