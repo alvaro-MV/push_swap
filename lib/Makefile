@@ -4,10 +4,10 @@ NAME = libft.a
 NAME_BONUS = libft_bonus.a
 
 # Compilador
-CC = cc
+CC = gcc
 
 # Opciones de compilación
-CFLAGS = -Wall -Wextra -Werror -fPIE
+CFLAGS = -Wall -Wextra -Werror
 
 # Directorio de archivos fuente
 SRCDIR = .
