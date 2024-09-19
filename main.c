@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:09:49 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/11 09:44:07 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/19 22:33:58 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 		return (stack_clean(a), -1);
 	argv++;
 	argv = parse_args(argc - 1, argv);
-	if (argc > 2)
+	if (argv[1] != NULL)
 	{
 		a = read_list_argum(argv, a);
 		if (a == NULL)
