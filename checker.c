@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:09:02 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/11 10:13:13 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/24 19:18:35 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	parse_instr(t_stack_head *a, t_stack_head *b)
 		if (!valid_instr)
 		{
 			ft_printf("Error\n");
+			free(instr);
 			return (0);
 		}
 		free(instr);
@@ -110,7 +111,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	argv++;
 	argv = parse_args(argc - 1, argv);
-	if (argc > 2)
+	if (argc >= 2)
 	{
 		a = read_list_argum(argv, a);
 		if (a == NULL)
