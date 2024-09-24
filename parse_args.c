@@ -3,39 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:10:03 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/11 09:41:58 by alvaro           ###   ########.fr       */
+/*   Updated: 2024/09/24 17:41:32 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/include/libft.h"
 #include "stack_io.h"
 
-int	check_digit_spaces(int argc, char **argv)
+int	check_digit_spaces_each(char **arg_exp)
 {
 	int	i;
 	int	j;
 	int	not_number;
 
 	i = 0;
-	while (i < argc)
+	while (arg_exp[i])
 	{
 		j = 0;
-		while (argv[i][j] == 32)
+		while (arg_exp[i][j] == 32)
 			j++;
-		if (argv[i][j] == 43 || argv[i][j] == 45)
+		if ((arg_exp[i][j] == 43 || arg_exp[i][j] == 45) \
+		&& (arg_exp[i][j + 1] >= 48 && arg_exp[i][j + 1] <= 57))
 			j++;
-		if ((argv[i][j] < 48 || argv[i][j] > 57) && argv[i][j])
+		if ((arg_exp[i][j] < 48 || arg_exp[i][j] > 57) && arg_exp[i][j])
 			return (0);
-		while (argv[i][j])
+		while (arg_exp[i][j])
 		{
-			not_number = argv[i][j] < 48 || argv[i][j] > 57;
-			if (not_number && argv[i][j] != 32)
+			not_number = arg_exp[i][j] < 48 || arg_exp[i][j] > 57;
+			if (not_number && arg_exp[i][j] != 32)
 				return (0);
 			j++;
 		}
+		i++;
+	}
+	return (1);
+}
+
+int	check_digit_spaces(int argc, char **argv)
+{
+	int		i;
+	char	**arg_expansion;
+
+	i = 0;
+	while (i < argc)
+	{
+		arg_expansion = ft_split(argv[i], ' ');
+		if (!check_digit_spaces_each(arg_expansion))
+			return (ft_free_array(arg_expansion), 0);
+		ft_free_array(arg_expansion);
 		i++;
 	}
 	return (1);
