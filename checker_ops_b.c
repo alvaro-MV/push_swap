@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:08:57 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/10 12:08:58 by alvmoral         ###   ########.fr       */
+/*   Updated: 2025/02/03 21:01:46 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	checker_swap_b(t_stack_head *b)
 	if (first_item == NULL
 		|| second_item == NULL)
 		return ;
+
 	stack_push(b, first_item);
 	stack_push(b, second_item);
 }

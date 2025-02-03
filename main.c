@@ -6,7 +6,7 @@
 /*   By: alvmoral <alvmoral@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:09:49 by alvmoral          #+#    #+#             */
-/*   Updated: 2024/09/24 16:43:50 by alvmoral         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:55:57 by alvmoral         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_dictionary	*get_dic_idx(t_stack_head *a, t_stack_head *b)
 	free(array);
 	return (dic);
 }
+
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
